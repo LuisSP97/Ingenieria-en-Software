@@ -5,3 +5,4 @@ Desarrolladores:
   - Ariel Painenao
   - Sebastian Perez
   - Luis Salinas
+  - Lester Vasquez
