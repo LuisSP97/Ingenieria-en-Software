@@ -1,0 +1,9 @@
+{% if listaProductos %}
+    <ul>
+    {% for producto in listaProductos %}
+        <li><a href="/aplicacion/catalogo/{{ producto.codigo }}/">{{ producto.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay catalogo.</p>
+{% endif %}
