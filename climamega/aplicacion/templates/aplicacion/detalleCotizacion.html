@@ -1,0 +1,16 @@
+<h1>{{ cotizacion.numero_cotizacion }}</h1>
+<p>Rut: {{ cotizacion.rut_cliente }}</p> 
+<p>Precio: {{ cotizacion.total }}</p>
+
+<p>Listado de productos</p>
+
+{% if listaProductos %}
+    <ul>
+    {% for producto in listaProductos %}
+        <li><a href="/aplicacion/catalogo/{{ producto.codigoProducto.codigo }}/">{{ producto.codigoProducto.nombre }},</a> cantidad: {{ producto.cantidad }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay catalogo.</p>
+{% endif %}
+

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from django.http import Http404
 
-from .models import Catalogo
+from .models import Catalogo, Cotizacion, Prod_Cotizacion
 
 def index(request):
     return render(request, 'aplicacion/index.html')
@@ -15,8 +15,16 @@ def catalogo(request):
     return render(request, 'aplicacion/catalogo.html', {'listaProductos': listaProductos})
 
 def cotizacion(request, numero_cotizacion):
-    respuesta = "Cotizacion Numero: %s."
-    return HttpResponse(respuesta % numero_cotizacion)
+    try:
+        cotizacion = Cotizacion.objects.get(pk=numero_cotizacion)
+        listaProductos = cotizacion.prod_cotizacion_set.all()
+    except Cotizacion.DoesNotExist:
+        raise Http404("No existe cotizacion")
+    context = {
+      'cotizacion': cotizacion,
+      'listaProductos': listaProductos
+    }
+    return render(request, 'aplicacion/detalleCotizacion.html', context)
 
 def producto(request, codigo):
     try:
