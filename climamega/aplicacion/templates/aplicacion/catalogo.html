@@ -1,7 +1,7 @@
 {% if listaProductos %}
     <ul>
     {% for producto in listaProductos %}
-        <li><a href="/aplicacion/catalogo/{{ producto.codigo }}/">{{ producto.nombre }}</a></li>
+        <li><a href="{% url 'producto' producto.codigo %}">{{ producto.nombre }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

@@ -25,14 +25,14 @@ class Estado(models.Model):
         return self.descripcion
 
 class Catalogo(models.Model):
-    codigo = models.IntegerField(primary_key=True)
+    codigo = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=64)
     precio = models.IntegerField()
     def __str__(self):
         return self.nombre
 
 class Cotizacion(models.Model):
-    numero_cotizacion = models.IntegerField(primary_key=True)
+    numero_cotizacion = models.AutoField(primary_key=True)
     rut_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     tipo_servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
     emision = models.DateTimeField('Fecha emision')
@@ -51,7 +51,7 @@ class Prod_Cotizacion(models.Model):
     cantidad = models.IntegerField()
 
 class Venta(models.Model):
-    numero_venta = models.IntegerField(primary_key=True)
+    numero_venta = models.AutoField(primary_key=True)
     cotizacion = models.ForeignKey(Cotizacion, on_delete=models.CASCADE)
     def __str__(self):
         return self.numero_venta
