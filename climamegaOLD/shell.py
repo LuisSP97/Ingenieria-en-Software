@@ -1,4 +1,4 @@
-from core.models import *
+from aplicacion.models import *
 
 from django.utils import timezone
 

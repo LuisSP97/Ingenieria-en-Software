@@ -1,0 +1,9 @@
+{% if lista %}
+    <ul>
+    {% for elem in lista %}
+        <li>{{ elem }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay datos.</p>
+{% endif %}
