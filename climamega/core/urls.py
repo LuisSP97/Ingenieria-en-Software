@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from core import views
+from django.conf import settings
 
-
+app_name = 'core'
 urlpatterns = [
-    path('aplicacion/', include('aplicacion.urls')),
+    path('', views.index, name='index'),  
+    path('catalogo/', views.catalogo, name='catalogo'),
+    path('catalogo/<int:codigo>/', views.producto, name='producto'),
+    path('cotizacion/', views.cotizaciones, name='cotizaciones'),
+    path('cotizacion/<int:numero_cotizacion>/', views.cotizacion, name='cotizacion'),
+    path('cotizacion/nueva/', views.nuevaCotizacion, name='nuevaCotizacion'),
+    path('cotizacion/generarCotizacion', views.generarCotizacion, name='generarCotizacion'),
     path('admin/', admin.site.urls),
 ]

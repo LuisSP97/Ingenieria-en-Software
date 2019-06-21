@@ -5,29 +5,27 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 
-
 from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Servicio, Estado
 
-def index(request):
-    return render(request, 'aplicacion/index.html')
 
-# Create your views here.
+def index(request):
+    return render(request, 'core/index.html')
 
 def catalogo(request):
     listaProductos = Catalogo.objects.all()
-    return render(request, 'aplicacion/catalogo.html', {'listaProductos': listaProductos})
+    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
 
 def producto(request, codigo):
     try:
         producto = Catalogo.objects.get(pk=codigo)
     except Catalogo.DoesNotExist:
         raise Http404("No existe producto")
-    return render(request, 'aplicacion/detalleProducto.html', {'producto': producto})
+    return render(request, 'core/detalleProducto.html', {'producto': producto})
 
 
 def cotizaciones(request):
     listaCotizaciones = Cotizacion.objects.all()
-    return render(request, 'aplicacion/cotizaciones.html', {'listaCotizaciones': listaCotizaciones})
+    return render(request, 'core/cotizaciones.html', {'listaCotizaciones': listaCotizaciones})
 
 
 def cotizacion(request, numero_cotizacion):
@@ -40,7 +38,7 @@ def cotizacion(request, numero_cotizacion):
       'cotizacion': cotizacion,
       'listaProductos': listaProductos
     }
-    return render(request, 'aplicacion/detalleCotizacion.html', context)
+    return render(request, 'core/detalleCotizacion.html', context)
 
 
 def nuevaCotizacion(request):
@@ -50,7 +48,7 @@ def nuevaCotizacion(request):
       'listaProductos': listaProductos,
       'listaClientes': listaClientes
     }
-    return render(request, 'aplicacion/nuevaCotizacion.html', context)
+    return render(request, 'core/nuevaCotizacion.html', context)
 
 
 def generarCotizacion(request):
@@ -75,6 +73,5 @@ def generarCotizacion(request):
       'cotizacion': cotizacion,
       'listaProductos': cotizacion.prod_cotizacion_set.all()
     }
-    return render(request, 'aplicacion/detalleCotizacion.html', context)
-
+    return render(request, 'core/detalleCotizacion.html', context)
 
