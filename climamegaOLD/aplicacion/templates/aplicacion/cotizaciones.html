@@ -1,9 +1,0 @@
-{% if listaCotizaciones %}
-    <ul>
-    {% for cotizacion in listaCotizaciones %}
-        <li><a href="{% url 'cotizacion' cotizacion.numero_cotizacion %}">{{ cotizacion.numero_cotizacion }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No hay cotizaciones.</p>
-{% endif %}
