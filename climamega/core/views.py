@@ -67,11 +67,19 @@ def generarCotizacion(request):
                                         codigoProducto = Catalogo.objects.get(pk=producto), 
                                         cantidad = 1)
 
-    numeroCotizacion = cotizacion.numero_cotizacion
-
     context = {
       'cotizacion': cotizacion,
       'listaProductos': cotizacion.prod_cotizacion_set.all()
     }
     return render(request, 'core/detalleCotizacion.html', context)
 
+def nuevoProducto(request):
+    return render(request, 'core/nuevoProducto.html')
+
+
+def generarProducto(request):
+    Catalogo.objects.create( nombre = request.POST['nombre'],
+                             precio = request.POST['precio'])
+
+    listaProductos = Catalogo.objects.all()
+    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
