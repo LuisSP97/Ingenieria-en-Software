@@ -22,6 +22,34 @@ def producto(request, codigo):
         raise Http404("No existe producto")
     return render(request, 'core/detalleProducto.html', {'producto': producto})
 
+def clientes(request):
+    listaClientes = Cliente.objects.all()
+    return render(request, 'core/clientes.html', {'listaClientes': listaClientes})
+
+def cliente(request, rut):
+    try:
+        cliente = Cliente.objects.get(pk=rut)
+    except Cliente.DoesNotExist:
+        raise Http404("No existe cliente")
+    return render(request, 'core/detalleCliente.html', {'cliente': cliente})
+
+def nuevoCliente(request):
+    return render(request, 'core/nuevoCliente.html')
+
+def generarCliente(request):
+    Cliente.objects.create( rut = request.POST['rut'],
+                            nombre = request.POST['nombre'],
+                            apellido = request.POST['apellido'],
+                            correo = request.POST['correo'],
+                            telefono = request.POST['telefono'],
+                            direccion = request.POST['direccion']
+                            )
+
+    listaClientes = Cliente.objects.all()
+    return render(request, 'core/clientes.html', {'listaClientes': listaClientes})
+
+
+
 
 def cotizaciones(request):
     listaCotizaciones = Cotizacion.objects.all()
@@ -44,6 +72,7 @@ def cotizacion(request, numero_cotizacion):
 def nuevaCotizacion(request):
     listaProductos = Catalogo.objects.all()
     listaClientes = Cliente.objects.all()
+    
     context = {
       'listaProductos': listaProductos,
       'listaClientes': listaClientes
@@ -83,3 +112,5 @@ def generarProducto(request):
 
     listaProductos = Catalogo.objects.all()
     return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
+
+
