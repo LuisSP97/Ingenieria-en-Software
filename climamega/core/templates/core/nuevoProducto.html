@@ -1,0 +1,9 @@
+<form action="{% url 'generarProducto' %}" method="post">
+  {% csrf_token %}
+  
+  Nombre producto: <input type="text" name="nombre"><br>
+  Precio producto: <input type="number" name="precio">
+
+  <input type="submit" value="Aceptar">
+
+  </form>
