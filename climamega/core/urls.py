@@ -25,9 +25,16 @@ urlpatterns = [
     path('catalogo/<int:codigo>/', views.producto, name='producto'),
     path('catalogo/nuevo/', views.nuevoProducto, name='nuevoProducto'),
     path('catalogo/nuevoProducto/', views.generarProducto, name='generarProducto'),
+
+    path('clientes/', views.clientes, name='clientes'),
+    path('clientes/<int:rut>/', views.cliente, name='cliente'),
+    path('clientes/nuevo/', views.nuevoCliente, name='nuevoCliente'),
+    path('clientes/nuevoCliente/', views.generarCliente, name='generarCliente'),
+
     path('cotizacion/', views.cotizaciones, name='cotizaciones'),
     path('cotizacion/<int:numero_cotizacion>/', views.cotizacion, name='cotizacion'),
     path('cotizacion/nueva/', views.nuevaCotizacion, name='nuevaCotizacion'),
     path('cotizacion/generarCotizacion/', views.generarCotizacion, name='generarCotizacion'),
+
     path('admin/', admin.site.urls),
 ]
