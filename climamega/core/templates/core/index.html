@@ -1,3 +1,34 @@
-<h1>INDICE</h1>
+{% include 'core/header.html' %}
 
-<li><a href="/catalogo">Catalogo de productos</a></li>
+    <section class="formulario">
+            <h1>
+                Agregar Cliente
+            </h1>
+
+            <form class="form1" action="{% url 'generarCliente' %}" method="post">
+                {% csrf_token %}
+                    <label for="nombre" class="Nombre">Nombre</label>
+                    <input name="nombre" type="text">
+        
+                    <label for="apellido" class="Apellido">Apellido</label>
+                    <input name="apellido" type="text">
+        
+                    <label for="rut">Rut</label>
+                    <input name="rut" type="number">
+        
+                    <label for="direccion">Direccion</label>
+                    <input name="direccion" type="text">
+        
+                    <label for="email">Email</label>
+                    <input name="email" type="email">
+
+                    <label for="telefono">Telefono</label>
+                    <input name="telefono" type="number">
+        
+                    <input type="submit" value="Guardar">
+                </form>
+
+    </section>
+
+</body>
+</html>

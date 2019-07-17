@@ -12,8 +12,13 @@ def index(request):
     return render(request, 'core/index.html')
 
 def catalogo(request):
-    listaProductos = Catalogo.objects.all()
-    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
+    return render(request, 'core/catalogobus.html')
+
+def busquedaCatalogo(request):
+  codigo = request.POST['numero-producto']
+  return render(request, 'core/detalleProducto.html', {'producto': codigo})
+
+
 
 def producto(request, codigo):
     try:
@@ -26,7 +31,10 @@ def clientes(request):
     listaClientes = Cliente.objects.all()
     return render(request, 'core/clientes.html', {'listaClientes': listaClientes})
 
-def cliente(request, rut):
+def cliente(request):
+    return detalleCliente (request, request.POST['rut'])
+
+def detalleCliente(request, rut):
     try:
         cliente = Cliente.objects.get(pk=rut)
     except Cliente.DoesNotExist:
@@ -36,17 +44,20 @@ def cliente(request, rut):
 def nuevoCliente(request):
     return render(request, 'core/nuevoCliente.html')
 
+
+def buscarCliente(request):
+    listaClientes = Cliente.objects.all()
+    return render(request, 'core/clientesbus.html', {'listaClientes': listaClientes})
+
 def generarCliente(request):
     Cliente.objects.create( rut = request.POST['rut'],
                             nombre = request.POST['nombre'],
                             apellido = request.POST['apellido'],
-                            correo = request.POST['correo'],
+                            correo = request.POST['email'],
                             telefono = request.POST['telefono'],
                             direccion = request.POST['direccion']
                             )
-
-    listaClientes = Cliente.objects.all()
-    return render(request, 'core/clientes.html', {'listaClientes': listaClientes})
+    return render(request, 'core/index.html')
 
 
 
@@ -112,5 +123,3 @@ def generarProducto(request):
 
     listaProductos = Catalogo.objects.all()
     return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
-
-

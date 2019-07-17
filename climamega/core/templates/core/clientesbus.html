@@ -1,0 +1,29 @@
+{% include 'core/header.html' %}
+
+    <section class="formulario-buscar">
+        <h1>
+            Buscar Cliente
+        </h1>
+
+        <form class="form2" action="{% url 'cliente' %}" method="post">
+            {% csrf_token %}
+                <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
+                <input name="rut" type="number" placeholder="Buscar Rut" >
+                <input type="submit" value="Buscar">
+        </form>
+          
+
+    </section>
+
+    <section class="listado"></section>
+    <h1>
+        Listado de Clientes
+    </h1>
+      <ul>
+        {% for cliente in listaClientes %}
+          <li><a href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+</body>
+</html>

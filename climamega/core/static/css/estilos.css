@@ -1,0 +1,156 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body{
+    background:  white;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+}
+
+.contenedor{
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+header .menu {
+    background-color: hsl(199, 85%, 53%)
+}
+header .menu nav{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+header .menu nav ul{
+    list-style: none;
+}
+
+header .menu  nav >ul >li{
+      float: left;
+}
+
+    /* ORDENE LOS UL */
+header .menu nav ul::after{
+      content:' ';
+      display: block;
+      clear: both;
+}
+
+    /* ordene los a COLOR */
+header .menu nav ul li a{
+      display: inline-block;
+      width: 200px;
+      color: #ffffff;
+      text-decoration: none;
+      text-align: center;
+      padding: 20px;
+}
+    
+/* hover COLOR CUANDO PASO POR ARRRIBA DE LOS A */
+header .menu nav ul li a:hover{
+      background-color: black;
+ }
+    
+    /* SEGUNDO LVL */
+    /* COLOR A LOS ENLACES */
+header .menu nav ul ul {
+      position: absolute;
+      top: 100%;
+      background-color:#003666;
+      display:none;
+      text-align: left
+}
+
+    /* para que se guarden los enlaces */
+header .menu nav ul li:hover> ul{
+      display: block;
+    
+}
+
+    /* color para cuando despliegen los enlaces */
+header .menu nav ul li:hover{
+      background-color: #037ef3; 
+}
+
+.formulario .form1 {
+    display: grid;
+    padding: 1em;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin: 2rem auto 0 auto;
+    max-width: 600px;
+    padding: 1em;
+}
+
+.formulario .form1 input {
+    background: #fff;
+    border: 1px solid #9c9c9c;
+}
+
+.formulario .form1 button {
+    background: lightgrey;
+    padding: 0.7em;
+    width: 100%;
+    border: 0;
+}
+
+.formulario .form1 button:hover {
+    background: gold;
+}
+  
+.formulario .form1 label {
+    padding: 0.5em 0.5em 0.5em 0;
+}
+  
+.formulario .form1 input {
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+
+.formulario .form1 input:focus {
+    outline: 3px solid blue
+}
+
+.formulario h1{
+    text-align: center;
+    border: 2px solid black;
+    padding: 20px 60px;
+}
+
+.formulario-buscar h1{
+    text-align: center;
+    border: 2px solid black;
+    padding: 20px 60px;
+}
+
+
+.formulario-buscar .form2{
+    padding: 1em;
+    background: #f9f9f9;
+    margin: 2rem auto 0 auto;
+    max-width: 600px;
+    padding: 1em;
+   text-align: center;
+}
+.formulario-buscar .form2 label {
+    padding: 0.5em 0.5em 0.5em 0;
+}
+
+.formulario-buscar .form2 input {
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+
+.form2 button {
+    padding: 11px 11px;
+    border-radius: 10px;
+
+}

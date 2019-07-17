@@ -27,6 +27,9 @@ urlpatterns = [
     path('catalogo/nuevoProducto/', views.generarProducto, name='generarProducto'),
 
     path('clientes/', views.clientes, name='clientes'),
+    path('cliente/', views.cliente, name='cliente'),
+    path('detalleCliente/<int:rut>/', views.detalleCliente, name='detalleCliente'),
+    path('buscarCliente/', views.buscarCliente, name='buscarCliente'),
     path('clientes/<int:rut>/', views.cliente, name='cliente'),
     path('clientes/nuevo/', views.nuevoCliente, name='nuevoCliente'),
     path('clientes/nuevoCliente/', views.generarCliente, name='generarCliente'),
