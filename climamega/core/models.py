@@ -12,11 +12,6 @@ class Cliente(models.Model):
     def __str__(self):
         return (str(self.rut) + ", " + self.nombre + ", " + self.apellido)
 
-class Servicio(models.Model):
-    # id servicio automatico
-    descripcion = models.CharField(max_length=512)
-    def __str__(self):
-        return self.descripcion
 
 class Estado(models.Model):
     # id automatico
@@ -34,7 +29,6 @@ class Catalogo(models.Model):
 class Cotizacion(models.Model):
     numero_cotizacion = models.AutoField(primary_key=True)
     rut_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-    tipo_servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
     emision = models.DateTimeField('Fecha emision')
     expiracion = models.DateTimeField('Fecha expiracion')
     total = models.IntegerField()

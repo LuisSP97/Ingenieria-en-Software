@@ -13,8 +13,15 @@
             <p>Telefono: {{ cliente.telefono }}</p> 
             <p>Direccion: {{ cliente.direccion }}</p> 
 
+    </section>
+    
+    <section class="formulario-buscar">
 
-
+        <form class="form2" action="{% url 'confirmarEliminarCliente' cliente.rut %}" method="post">
+            {% csrf_token %}
+              <input type="submit" value="Eliminar">
+        </form>
+          
     </section>
 
 {% else %}
@@ -27,4 +34,4 @@
 
 
 </body>
-</html>
+</html> 

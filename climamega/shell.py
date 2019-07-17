@@ -28,11 +28,4 @@ from django.utils import timezone
 #                                        estado = Estado.objects.get(pk=1))
 
 
-
-cotizacion = Cotizacion.objects.get(pk=2)
-
-producto = Catalogo.objects.get(pk=1)
-
-relacion = Prod_Cotizacion(cotizacion = cotizacion, codigoProducto = producto, cantidad = 20)
-
-relacion.save()
+Estado.objects.create(descripcion = "Pendiente")

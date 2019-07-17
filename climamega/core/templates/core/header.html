@@ -29,16 +29,16 @@
                         <ul>
                             <li><a href="#"><i class="fas fa-user"></i> Clientes</a>
                                 <ul>
-                                    <li><a href="index.html"><i class="fas fa-plus"></i> Agregar</a></li>
-                                    <li><a href="clientesmodi.html"><i class="fas fa-edit"></i> Modificar</a></li>
-                                    <li><a href="clienteseli.html"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
+                                    <li><a href="{% url 'index' %}"><i class="fas fa-plus"></i> Agregar</a></li>
+                                    <li><a href="{% url 'modificarCliente' %}"><i class="fas fa-edit"></i> Modificar</a></li>
+                                    <li><a href="{% url 'eliminarCliente' %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
                                     <li><a href="{% url 'buscarCliente' %}"><i class="fas fa-search"></i> Buscar</a></li>
                                  </ul>
                             </li>
 
                             <li><a href="#"><i class="fas fa-calculator"></i> Cotizacion</a>
                                 <ul>
-                                    <li><a href="cotizacionagre.html"><i class="fas fa-plus"></i> Agregar</a></li>
+                                    <li><a href="{% url 'nuevaCotizacion' %}"><i class="fas fa-plus"></i> Agregar</a></li>
                                     <li><a href="cotizacionbus.html"><i class="fas fa-search"></i> Buscar</a></li>
                                 </ul>
                             </li>

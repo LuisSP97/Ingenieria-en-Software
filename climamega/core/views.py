@@ -5,19 +5,151 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Servicio, Estado
+from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Estado
 
 
 def index(request):
     return render(request, 'core/index.html')
 
+def detalleCliente(request, rut):
+    try:
+        cliente = Cliente.objects.get(pk=rut)
+    except Cliente.DoesNotExist:
+        return render(request, 'core/detalleCliente.html', {'cliente': False})
+    return render(request, 'core/detalleCliente.html', {'cliente': cliente})
+
+
+def buscarCliente(request):
+    if request.method == 'POST' and request.POST['rut'] != "":
+        try:
+            cliente = Cliente.objects.get(pk=request.POST['rut'])
+        except Cliente.DoesNotExist:
+            return render(request, 'core/detalleCliente.html', {'cliente': False})
+        return render(request, 'core/detalleCliente.html', {'cliente': cliente})
+    else:
+        listaClientes = Cliente.objects.all()
+        return render(request, 'core/clientesbus.html', {'listaClientes': listaClientes})
+
+
+def generarCliente(request):
+    Cliente.objects.create(rut=request.POST['rut'],
+                           nombre=request.POST['nombre'],
+                           apellido=request.POST['apellido'],
+                           correo=request.POST['email'],
+                           telefono=request.POST['telefono'],
+                           direccion=request.POST['direccion']
+                           )
+    return render(request, 'core/index.html')
+
+
+def eliminarCliente(request):
+    if request.method == 'POST' and request.POST['rut'] != "":
+        try:
+            cliente = Cliente.objects.get(pk=request.POST['rut'])
+        except Cliente.DoesNotExist:
+            return render(request, 'core/confirmarEliminarCliente.html', {'cliente': False})
+        return render(request, 'core/confirmarEliminarCliente.html', {'cliente': cliente})
+    else:
+        return render(request, 'core/clienteseli.html')
+
+
+def confirmarEliminarCliente(request, rut):
+    Cliente.objects.filter(pk=rut).delete()
+    return render(request, 'core/index.html')
+
+
+def modificarCliente(request):
+    if request.method == 'POST' and request.POST['rut'] != "":
+        try:
+            cliente = Cliente.objects.get(pk=request.POST['rut'])
+        except Cliente.DoesNotExist:
+            return render(request, 'core/confirmarModificarCliente.html', {'cliente': False})
+        return render(request, 'core/confirmarModificarCliente.html', {'cliente': cliente})
+    else:
+        return render(request, 'core/clientesmodi.html')
+
+
+def confirmarModificarCliente(request, rut):
+    Cliente.objects.filter(pk=rut).update(
+      nombre=request.POST['nombre'],
+      apellido=request.POST['apellido'],
+      correo=request.POST['email'],
+      telefono=request.POST['telefono'],
+      direccion=request.POST['direccion']
+    )
+    return render(request, 'core/index.html')
+
+
+def nuevaCotizacion(request):
+    if request.method == 'POST' and request.POST['cliente'] != "" and request.POST.getlist('productos') != [] and request.POST['fecha-expiracion'] != "":
+        cotizacion = Cotizacion.objects.create(
+            rut_cliente=Cliente.objects.get(pk=request.POST['cliente']),
+            emision=timezone.now(),
+            expiracion=request.POST['fecha-expiracion'],
+            precio_servicio=request.POST['precio-servicio'],
+            total=request.POST['total'],
+            estado=Estado.objects.get(pk=1))
+
+        cantidad = list(map(lambda cantidad: int(cantidad), request.POST.getlist('productos')))
+        productos = list(Catalogo.objects.all())
+
+        listaProductosCantidad = list(filter(lambda tp: int(tp[1]) > 0, zip(productos, cantidad)))
+        for (producto, cantidad) in listaProductosCantidad:
+            Prod_Cotizacion.objects.create(
+                cotizacion=cotizacion,
+                codigoProducto=producto,
+                cantidad=cantidad)
+
+        return render(request, 'core/index.html')
+        
+    else:
+        listaProductos = Catalogo.objects.all()
+        listaClientes = Cliente.objects.all()
+
+        context = {
+            'listaProductos': listaProductos,
+            'listaClientes': listaClientes
+        }
+        return render(request, 'core/cotizacionagre.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def nuevoProducto(request):
+    return render(request, 'core/nuevoProducto.html')
+
+
+def generarProducto(request):
+    Catalogo.objects.create(nombre=request.POST['nombre'],
+                            precio=request.POST['precio'])
+
+    listaProductos = Catalogo.objects.all()
+    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
+
+
 def catalogo(request):
     return render(request, 'core/catalogobus.html')
 
-def busquedaCatalogo(request):
-  codigo = request.POST['numero-producto']
-  return render(request, 'core/detalleProducto.html', {'producto': codigo})
 
+def busquedaCatalogo(request):
+    codigo = request.POST['numero-producto']
+    return render(request, 'core/detalleProducto.html', {'producto': codigo})
 
 
 def producto(request, codigo):
@@ -26,100 +158,3 @@ def producto(request, codigo):
     except Catalogo.DoesNotExist:
         raise Http404("No existe producto")
     return render(request, 'core/detalleProducto.html', {'producto': producto})
-
-def clientes(request):
-    listaClientes = Cliente.objects.all()
-    return render(request, 'core/clientes.html', {'listaClientes': listaClientes})
-
-def cliente(request):
-    return detalleCliente (request, request.POST['rut'])
-
-def detalleCliente(request, rut):
-    try:
-        cliente = Cliente.objects.get(pk=rut)
-    except Cliente.DoesNotExist:
-        raise Http404("No existe cliente")
-    return render(request, 'core/detalleCliente.html', {'cliente': cliente})
-
-def nuevoCliente(request):
-    return render(request, 'core/nuevoCliente.html')
-
-
-def buscarCliente(request):
-    listaClientes = Cliente.objects.all()
-    return render(request, 'core/clientesbus.html', {'listaClientes': listaClientes})
-
-def generarCliente(request):
-    Cliente.objects.create( rut = request.POST['rut'],
-                            nombre = request.POST['nombre'],
-                            apellido = request.POST['apellido'],
-                            correo = request.POST['email'],
-                            telefono = request.POST['telefono'],
-                            direccion = request.POST['direccion']
-                            )
-    return render(request, 'core/index.html')
-
-
-
-
-def cotizaciones(request):
-    listaCotizaciones = Cotizacion.objects.all()
-    return render(request, 'core/cotizaciones.html', {'listaCotizaciones': listaCotizaciones})
-
-
-def cotizacion(request, numero_cotizacion):
-    try:
-        cotizacion = Cotizacion.objects.get(pk=numero_cotizacion)
-        listaProductos = cotizacion.prod_cotizacion_set.all()
-    except Cotizacion.DoesNotExist:
-        raise Http404("No existe cotizacion")
-    context = {
-      'cotizacion': cotizacion,
-      'listaProductos': listaProductos
-    }
-    return render(request, 'core/detalleCotizacion.html', context)
-
-
-def nuevaCotizacion(request):
-    listaProductos = Catalogo.objects.all()
-    listaClientes = Cliente.objects.all()
-    
-    context = {
-      'listaProductos': listaProductos,
-      'listaClientes': listaClientes
-    }
-    return render(request, 'core/nuevaCotizacion.html', context)
-
-
-def generarCotizacion(request):
-    cotizacion = Cotizacion.objects.create( rut_cliente=Cliente.objects.get(pk=request.POST['cliente']),
-                                            tipo_servicio = Servicio.objects.get(pk=1),
-                                            emision = timezone.now(),
-                                            expiracion = timezone.now(),
-                                            total = 120000,
-                                            precio_servicio = 30000,
-                                            estado = Estado.objects.get(pk=1))
-
-    listaProductos = request.POST.getlist('productos')
-
-    for producto in listaProductos:
-        Prod_Cotizacion.objects.create( cotizacion = cotizacion, 
-                                        codigoProducto = Catalogo.objects.get(pk=producto), 
-                                        cantidad = 1)
-
-    context = {
-      'cotizacion': cotizacion,
-      'listaProductos': cotizacion.prod_cotizacion_set.all()
-    }
-    return render(request, 'core/detalleCotizacion.html', context)
-
-def nuevoProducto(request):
-    return render(request, 'core/nuevoProducto.html')
-
-
-def generarProducto(request):
-    Catalogo.objects.create( nombre = request.POST['nombre'],
-                             precio = request.POST['precio'])
-
-    listaProductos = Catalogo.objects.all()
-    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})

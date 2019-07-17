@@ -5,7 +5,7 @@
             Buscar Cliente
         </h1>
 
-        <form class="form2" action="{% url 'cliente' %}" method="post">
+        <form class="form2" action="{% url 'buscarCliente' %}" method="post">
             {% csrf_token %}
                 <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
                 <input name="rut" type="number" placeholder="Buscar Rut" >
@@ -15,7 +15,7 @@
 
     </section>
 
-    <section class="listado"></section>
+    <section class="detalle">
     <h1>
         Listado de Clientes
     </h1>

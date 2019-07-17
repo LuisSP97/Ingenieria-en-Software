@@ -21,23 +21,24 @@ from django.conf import settings
 app_name = 'core'
 urlpatterns = [
     path('', views.index, name='index'),  
-    path('catalogo/', views.catalogo, name='catalogo'),
-    path('catalogo/<int:codigo>/', views.producto, name='producto'),
-    path('catalogo/nuevo/', views.nuevoProducto, name='nuevoProducto'),
-    path('catalogo/nuevoProducto/', views.generarProducto, name='generarProducto'),
 
-    path('clientes/', views.clientes, name='clientes'),
-    path('cliente/', views.cliente, name='cliente'),
     path('detalleCliente/<int:rut>/', views.detalleCliente, name='detalleCliente'),
-    path('buscarCliente/', views.buscarCliente, name='buscarCliente'),
-    path('clientes/<int:rut>/', views.cliente, name='cliente'),
-    path('clientes/nuevo/', views.nuevoCliente, name='nuevoCliente'),
+
     path('clientes/nuevoCliente/', views.generarCliente, name='generarCliente'),
 
-    path('cotizacion/', views.cotizaciones, name='cotizaciones'),
-    path('cotizacion/<int:numero_cotizacion>/', views.cotizacion, name='cotizacion'),
-    path('cotizacion/nueva/', views.nuevaCotizacion, name='nuevaCotizacion'),
-    path('cotizacion/generarCotizacion/', views.generarCotizacion, name='generarCotizacion'),
+    path('buscarCliente/', views.buscarCliente, name='buscarCliente'),
+    
+    path('eliminarCliente/', views.eliminarCliente, name='eliminarCliente'),
+    path('confirmarEliminarCliente/<int:rut>/', views.confirmarEliminarCliente, name='confirmarEliminarCliente'),
+
+    path('modificarCliente/', views.modificarCliente, name='modificarCliente'),
+    path('confirmarModificarCliente/<int:rut>', views.confirmarModificarCliente, name='confirmarModificarCliente'),
+    
+    path('nuevaCotizacion/', views.nuevaCotizacion, name='nuevaCotizacion'),
+
+
+
+    
 
     path('admin/', admin.site.urls),
 ]

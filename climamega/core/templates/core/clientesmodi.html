@@ -6,10 +6,11 @@
             Modificar Cliente
         </h1>
 
-        <form class="form2" action="">
+        <form class="form2" action="{% url 'modificarCliente' %}" method="post">
+            {% csrf_token %}
                 <label for="rut" class="Nombre"> <i class="fas fa-search"></i></label>
-                <input id="rut" type="number" placeholder="Buscar Rut">
-                <button>Buscar</button>
+                <input name="rut" type="number" placeholder="Buscar Rut">
+                <input type="submit" value="Buscar">
          </form>
     </section>
 

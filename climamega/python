@@ -1,0 +1,79 @@
+from core.models import *
+
+from django.utils import timezone
+
+
+
+#cotizacion=Cotizacion
+#
+#cotizacion.rut_cliente=cliente
+#cotizacion.tipo_servicio = Servicio.objects.get(pk=1)
+#
+#cotizacion.emision = timezone.now()
+#cotizacion.expiracion = timezone.now()
+#
+#cotizacion.total = 120000
+#
+#cotizacion.precio_servicio = 30000
+#
+#cotizacion.estado = Estado.objects.get(pk=1)
+
+
+#cotizacion = Cotizacion.objects.create( rut_cliente=Cliente.objects.get(pk=1234),
+#                                        tipo_servicio = Servicio.objects.get(pk=1),
+#                                        emision = timezone.now(),
+#                                        expiracion = timezone.now(),
+#                                        total = 120000,
+#                                        precio_servicio = 30000,
+#                                        estado = Estado.objects.get(pk=1))
+
+
+
+cotizacion = Cotizacion.objects.get(pk=2)
+
+producto = Catalogo.objects.get(pk=1)
+
+relacion = Prod_Cotizacion(cotizacion = cotizacion, codigoProducto = producto, cantidad = 20)
+
+relacion.save()#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+
+
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == '__main__':
+    main()
+#!/usr/bin/env python
+"""Django's command-line utility for administrative tasks."""
+import os
+import sys
+
+
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(
+            "Couldn't import Django. Are you sure it's installed and "
+            "available on your PYTHONPATH environment variable? Did you "
+            "forget to activate a virtual environment?"
+        ) from exc
+    execute_from_command_line(sys.argv)
+
+
+if __name__ == '__main__':
+    main()
