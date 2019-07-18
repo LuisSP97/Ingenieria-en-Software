@@ -19,7 +19,7 @@
         </h1>
           <ul>
             {% for producto in cotizacion.prod_cotizacion_set.all %}
-              Nombre producto: {{ producto.codigoProducto.nombre }}, Cantidad: {{ producto.cantidad }}
+              <li>Nombre producto: {{ producto.codigoProducto.nombre }}, Cantidad: {{ producto.cantidad }}</li>
             {% endfor %}
           </ul>
         </section>

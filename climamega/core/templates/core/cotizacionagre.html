@@ -18,15 +18,15 @@
                 <p>Catalogo: </p>
                 
                 {% for producto in listaProductos %}
-                    <input type="number" name="productos" id="productos{{ producto.codigo }}" value="{{ producto.codigo }}">
+                    <input type="number" name="productos" id="productos{{ producto.codigo }}" value="0">
                     <label for="productos{{ producto.codigo }}">{{ producto.nombre }}</label>
                 {% endfor %}
 
-                <label for="fecha-expiracion">Fecha de Expiracion</label>
-                <input name="fecha-expiracion" type="date">
+                <label for="expiracion">Fecha de Expiracion</label>
+                <input name="expiracion" type="date">
 
-                <label for="precio-servicio">Precio servicio</label>
-                <input name="precio-servicio" type="number" value="0">
+                <label for="servicio">Precio servicio</label>
+                <input name="servicio" type="number" value="0">
 
                 <input type="submit" value="Agregar">
             </form>

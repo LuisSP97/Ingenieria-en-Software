@@ -91,7 +91,7 @@ def confirmarModificarCliente(request, rut):
 
 
 def nuevaCotizacion(request):
-    if request.method == 'POST' and request.POST['fecha-expiracion'] != "":
+    if request.method == 'POST' and request.POST['expiracion'] != "":
       try:
           cantidad = list(map(lambda cantidad: int(cantidad), request.POST.getlist('productos')))
           productos = list(Catalogo.objects.all())
@@ -100,19 +100,22 @@ def nuevaCotizacion(request):
 
           productos, cantidades = zip(*productosCantidad)
 
-          precioServicio = int(request.POST['precio-servicio'])
-          precioTotal = reduce(sum, map(lambda p: p[0].precio * p[1], productosCantidad))
+          precioTotal = 0
+          for i in productosCantidad:
+            precioTotal += i[0].precio * i[1]
+
+          precioServicio = int(request.POST['servicio'])
 
           request.session['rut'] = request.POST['cliente']
-          request.session['expiracion'] = request.POST['fecha-expiracion']
-          request.session['servicio'] = request.POST['precio-servicio']
+          request.session['expiracion'] = request.POST['expiracion']
+          request.session['servicio'] = request.POST['servicio']
           request.session['productos'] = list(map(lambda p: p.codigo, productos))
           request.session['cantidades'] = cantidades
           request.session['total'] = precioTotal + precioServicio
 
           context = { 'rut': request.POST['cliente'],
-                      'expiracion': request.POST['fecha-expiracion'],
-                      'servicio': request.POST['precio-servicio'],
+                      'expiracion': request.POST['expiracion'],
+                      'servicio': request.POST['servicio'],
                       'productosCantidad': productosCantidad,
                       'total': precioTotal + precioServicio}
 
@@ -199,6 +202,16 @@ def agregarProducto(request):
   else:
       return render(request, 'core/catalogoagre.html')
     
+
+def buscarCatalogo(request):
+    listaProductos = Catalogo.objects.all()
+    return render(request, 'core/catalogobus.html', {'listaProductos': listaProductos})
+
+
+def detalleProducto(request, codigo):
+    producto = Catalogo.objects.get(pk=codigo)
+    return render(request, 'core/detalleProducto.html', {'producto': producto})
+
 
 def modificarProducto(request):
     listaProductos = Catalogo.objects.all()

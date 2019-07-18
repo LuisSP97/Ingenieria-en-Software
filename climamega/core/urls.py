@@ -40,6 +40,10 @@ urlpatterns = [
     path('buscarCotizacion/', views.buscarCotizacion, name='buscarCotizacion'),
     path('crearCotizacion/', views.crearCotizacion, name='crearCotizacion'),
 
+
+    path('detalleProducto/<int:codigo>/', views.detalleProducto, name='detalleProducto'),
+
+    path('buscarCatalogo/', views.buscarCatalogo, name='buscarCatalogo'),
     path('agregarProducto/', views.agregarProducto, name='agregarProducto'),
 
     path('modificarProducto/', views.modificarProducto, name='modificarProducto'),
