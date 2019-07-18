@@ -5,6 +5,8 @@ from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
 
+from functools import reduce
+
 from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Estado
 
 
@@ -81,28 +83,44 @@ def confirmarModificarCliente(request, rut):
 
 
 def nuevaCotizacion(request):
-    if request.method == 'POST' and request.POST['cliente'] != "" and request.POST.getlist('productos') != [] and request.POST['fecha-expiracion'] != "":
-        cotizacion = Cotizacion.objects.create(
-            rut_cliente=Cliente.objects.get(pk=request.POST['cliente']),
-            emision=timezone.now(),
-            expiracion=request.POST['fecha-expiracion'],
-            precio_servicio=request.POST['precio-servicio'],
-            total=request.POST['total'],
-            estado=Estado.objects.get(pk=1))
+    if request.method == 'POST' and request.POST['fecha-expiracion'] != "":
+      try:
+          cantidad = list(map(lambda cantidad: int(cantidad), request.POST.getlist('productos')))
+          productos = list(Catalogo.objects.all())
 
-        cantidad = list(map(lambda cantidad: int(cantidad), request.POST.getlist('productos')))
-        productos = list(Catalogo.objects.all())
+          productosCantidad = list(filter(lambda pc: int(pc[1]) > 0, zip(productos, cantidad)))
 
-        listaProductosCantidad = list(filter(lambda tp: int(tp[1]) > 0, zip(productos, cantidad)))
-        for (producto, cantidad) in listaProductosCantidad:
-            Prod_Cotizacion.objects.create(
-                cotizacion=cotizacion,
-                codigoProducto=producto,
-                cantidad=cantidad)
+          productos, cantidades = zip(*productosCantidad)
 
-        return render(request, 'core/index.html')
+          precioServicio = int(request.POST['precio-servicio'])
+          precioTotal = reduce(sum, map(lambda p: p[0].precio * p[1], productosCantidad))
+
+          request.session['rut'] = request.POST['cliente']
+          request.session['expiracion'] = request.POST['fecha-expiracion']
+          request.session['servicio'] = request.POST['precio-servicio']
+          request.session['productos'] = list(map(lambda p: p.codigo, productos))
+          request.session['cantidades'] = cantidades
+          request.session['total'] = precioTotal + precioServicio
+
+          context = { 'rut': request.POST['cliente'],
+                      'expiracion': request.POST['fecha-expiracion'],
+                      'servicio': request.POST['precio-servicio'],
+                      'productosCantidad': productosCantidad,
+                      'total': precioTotal + precioServicio}
+
+          return render(request, 'core/confirmarCotizacion.html', context)
         
+      except KeyError:
+          listaProductos = Catalogo.objects.all()
+          listaClientes = Cliente.objects.all()
+
+          context = {
+              'listaProductos': listaProductos,
+              'listaClientes': listaClientes
+          }
+          return render(request, 'core/cotizacionagre.html', context)
     else:
+
         listaProductos = Catalogo.objects.all()
         listaClientes = Cliente.objects.all()
 
@@ -111,6 +129,28 @@ def nuevaCotizacion(request):
             'listaClientes': listaClientes
         }
         return render(request, 'core/cotizacionagre.html', context)
+
+
+def crearCotizacion(request):
+    cotizacion = Cotizacion.objects.create(
+            rut_cliente=Cliente.objects.get(pk=request.session['rut']),
+            emision=timezone.now(),
+            expiracion=request.session['expiracion'],
+            precio_servicio=request.session['servicio'],
+            total=request.POST['total'],
+            estado=Estado.objects.get(pk=1)
+        )
+    
+    for codProducto, cantidad in zip(request.session['productos'], request.session['cantidades']):
+        Prod_Cotizacion.objects.create(
+            cotizacion=cotizacion,
+            codigoProducto=Catalogo.objects.get(pk=codProducto),
+            cantidad=cantidad)
+
+    return render(request, 'core/index.html')
+
+
+
 
 
 def buscarCotizacion(request):

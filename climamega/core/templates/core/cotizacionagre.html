@@ -13,13 +13,13 @@
                 
                 {% for cliente in listaClientes %}
                     <input type="radio" name="cliente" id="cliente{{ cliente.rut }}" value="{{ cliente.rut }}">
-                    <label for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label><br>
+                    <label for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label>
                 {% endfor %}
                 <p>Catalogo: </p>
                 
                 {% for producto in listaProductos %}
                     <input type="number" name="productos" id="productos{{ producto.codigo }}" value="{{ producto.codigo }}">
-                    <label for="productos{{ producto.codigo }}">{{ producto.nombre }}</label><br>
+                    <label for="productos{{ producto.codigo }}">{{ producto.nombre }}</label>
                 {% endfor %}
 
                 <label for="fecha-expiracion">Fecha de Expiracion</label>
@@ -27,9 +27,6 @@
 
                 <label for="precio-servicio">Precio servicio</label>
                 <input name="precio-servicio" type="number" value="0">
-
-                <label for="total">Total</label>
-                <input name="total" type="number" value="0">
 
                 <input type="submit" value="Agregar">
             </form>

@@ -33,11 +33,14 @@ urlpatterns = [
 
     path('modificarCliente/', views.modificarCliente, name='modificarCliente'),
     path('confirmarModificarCliente/<int:rut>', views.confirmarModificarCliente, name='confirmarModificarCliente'),
+
+    path('detalleCotizacion/<int:codigo>/', views.detalleCotizacion, name='detalleCotizacion'),
     
     path('nuevaCotizacion/', views.nuevaCotizacion, name='nuevaCotizacion'),
     path('buscarCotizacion/', views.buscarCotizacion, name='buscarCotizacion'),
+    path('crearCotizacion/', views.crearCotizacion, name='crearCotizacion'),
 
-    path('detalleCotizacion/<int:codigo>/', views.detalleCotizacion, name='detalleCotizacion'),
+    
 
     path('admin/', admin.site.urls),
 ]

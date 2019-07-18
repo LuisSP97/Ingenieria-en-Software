@@ -4,7 +4,6 @@
             <h1>
                 Detalle de Cotizacion
             </h1>
-            <p>Codigo: {{ cotizacion.numero_cotizacion }}</p> 
             <p>Cliente: <a href="{% url 'detalleCliente' cotizacion.rut_cliente.rut %}"> {{ cotizacion.rut_cliente.rut }}</a></p> 
             <p>Fecha emision: {{ cotizacion.emision }}</p> 
             <p>Fecha expiracion: {{ cotizacion.expiracion }}</p> 
