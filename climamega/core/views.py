@@ -53,7 +53,7 @@ def generarCliente(request):
 
 
 def eliminarCliente(request):
-    if request.method == 'POST' and request.POST['rut'] != "":
+    if request.method == 'POST' and request.POST.get('rut', False):
         try:
             cliente = Cliente.objects.get(pk=request.POST['rut'])
         except Cliente.DoesNotExist:
@@ -69,7 +69,7 @@ def confirmarEliminarCliente(request, rut):
 
 
 def modificarCliente(request):
-    if request.method == 'POST' and request.POST['rut'] != "":
+    if request.method == 'POST' and request.POST.get('rut', False):
         try:
             cliente = Cliente.objects.get(pk=request.POST['rut'])
         except Cliente.DoesNotExist:
@@ -80,18 +80,23 @@ def modificarCliente(request):
 
 
 def confirmarModificarCliente(request, rut):
-    Cliente.objects.filter(pk=rut).update(
-      nombre=request.POST['nombre'],
-      apellido=request.POST['apellido'],
-      correo=request.POST['email'],
-      telefono=request.POST['telefono'],
-      direccion=request.POST['direccion']
-    )
-    return render(request, 'core/index.html')
+    if request.POST.get('nombre', False) and request.POST.get('apellido', False) and request.POST.get('direccion', False):
+        Cliente.objects.filter(pk=rut).update(
+          nombre=request.POST['nombre'],
+          apellido=request.POST['apellido'],
+          correo=request.POST['email'],
+          telefono=request.POST['telefono'],
+          direccion=request.POST['direccion']
+        )
+        return render(request, 'core/index.html')
+    else:
+        return render(request, 'core/clientesmodi.html')
+    
+    
 
 
 def nuevaCotizacion(request):
-    if request.method == 'POST' and request.POST['expiracion'] != "":
+    if request.method == 'POST' and request.POST.get('expiracion', False) and request.POST.get('cliente', False):
       try:
           cantidad = list(map(lambda cantidad: int(cantidad), request.POST.getlist('productos')))
           productos = list(Catalogo.objects.all())
@@ -193,7 +198,7 @@ def detalleCotizacion(request, codigo):
 
 
 def agregarProducto(request):
-  if  request.method == 'POST' and request.POST['nombre'] != "" and request.POST['descripcion'] != "" and request.POST['precio'] != "":
+  if  request.method == 'POST' and request.POST.get('nombre', False) and request.POST.get('descripcion', False) and request.POST.get('precio', False):
       Catalogo.objects.create(nombre=request.POST['nombre'],
                             precio=request.POST['precio'],
                             descripcion=request.POST['descripcion'])
