@@ -1,5 +1,6 @@
 {% include 'core/header.html' %}
 
+{% if listaClientes and listaProductos%}
 
     <section class="formulario">
             <h1>
@@ -36,7 +37,13 @@
 
     </section>
 
+{% else %}
+    <section class="detalle">
+    <p>No existen clientes o productos.</p>
 
+</section>
+
+{% endif %}
 
 
 </body>

@@ -113,13 +113,33 @@ def nuevaCotizacion(request):
         return render(request, 'core/cotizacionagre.html', context)
 
 
+def buscarCotizacion(request):
+    if request.method == 'POST':
+        rut = request.POST['numero-rut']
+        cotizacion = request.POST['numero-cotizacion']
+        listaCotizaciones = []
+        if rut:
+            listaCotizaciones = Cotizacion.objects.filter(
+              rut_cliente = rut
+            )
+        if cotizacion:
+            listaCotizaciones = Cotizacion.objects.filter(
+              numero_cotizacion = cotizacion
+            )
+        return render(request, 'core/cotizacionbus.html', {'listaCotizaciones': listaCotizaciones})
+    else:
+        listaCotizaciones = Cotizacion.objects.all()
+        return render(request, 'core/cotizacionbus.html', {'listaCotizaciones': listaCotizaciones})
 
 
-
-
-
-
-
+def detalleCotizacion(request, codigo):
+    cotizacion = Cotizacion.objects.get(pk=codigo)
+    cotizacion.productos.all()
+    cotizacion.rut_cliente.apellido
+    cotizacion.rut_cliente.nombre
+    for registro in cotizacion.prod_cotizacion_set.all():
+      print (registro.cantidad)
+    return render(request, 'core/detalleCotizacion.html', {'cotizacion': cotizacion})
 
 
 

@@ -5,16 +5,30 @@
                 Buscar Cotizacion
             </h1>
         
-            <form class="form1" action="">
-                <label for="numerocoti" class="numerocoti">Numero de Cotizacion</label>
-                <input id="numerocoti" type="number">
+            <form class="form1" action="{% url 'buscarCotizacion' %}" method="post">
+              {% csrf_token %}
+                <label for="numero-rut" class="numero-rut">Rut cliente</label>
+                <input name="numero-rut" type="number">
+
+                
+                <label for="numero-cotizacion" class="numero-cotizacion">Numero de Cotizacion</label>
+                <input name="numero-cotizacion" type="number">
                  <button>Buscar</button>
             </form>
 
 
     </section>
 
-
+    <section class="detalle">
+        <h1>
+            Listado de Cotizaciones
+        </h1>
+          <ul>
+            {% for cotizacion in listaCotizaciones %}
+              <li><a href="{% url 'detalleCotizacion' cotizacion.numero_cotizacion %}">{{ cotizacion.numero_cotizacion }} - {{ cotizacion.rut_cliente }} {{ cotizacion.emision }} {{ cotizacion.emision }}</a></li>
+            {% endfor %}
+          </ul>
+        </section>
 
 
 </body>

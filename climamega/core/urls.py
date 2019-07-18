@@ -35,10 +35,9 @@ urlpatterns = [
     path('confirmarModificarCliente/<int:rut>', views.confirmarModificarCliente, name='confirmarModificarCliente'),
     
     path('nuevaCotizacion/', views.nuevaCotizacion, name='nuevaCotizacion'),
+    path('buscarCotizacion/', views.buscarCotizacion, name='buscarCotizacion'),
 
-
-
-    
+    path('detalleCotizacion/<int:codigo>/', views.detalleCotizacion, name='detalleCotizacion'),
 
     path('admin/', admin.site.urls),
 ]

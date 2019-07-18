@@ -1,0 +1,30 @@
+{% include 'core/header.html' %}
+
+    <section class="detalle">
+            <h1>
+                Detalle de Cotizacion
+            </h1>
+            <p>Codigo: {{ cotizacion.numero_cotizacion }}</p> 
+            <p>Cliente: <a href="{% url 'detalleCliente' cotizacion.rut_cliente.rut %}"> {{ cotizacion.rut_cliente.rut }}</a></p> 
+            <p>Fecha emision: {{ cotizacion.emision }}</p> 
+            <p>Fecha expiracion: {{ cotizacion.expiracion }}</p> 
+            <p>Precio servicio: {{ cotizacion.precio_servicio }}</p>
+            <p>Total: {{ cotizacion.total }}</p> 
+            <p>Estado: {{ cotizacion.estado.descripcion }}</p> 
+            <p>Codigo: {{ cotizacion.numero_cotizacion }}</p> 
+    </section>
+
+    <section class="detalle">
+        <h1>
+            Listado de Productos
+        </h1>
+          <ul>
+            {% for producto in cotizacion.prod_cotizacion_set.all %}
+              Nombre producto: {{ producto.codigoProducto.nombre }}, Cantidad: {{ producto.cantidad }}
+            {% endfor %}
+          </ul>
+        </section>
+
+
+</body>
+</html>
