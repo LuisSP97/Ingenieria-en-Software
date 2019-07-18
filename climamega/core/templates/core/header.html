@@ -45,9 +45,9 @@
 
                             <li><a href="#"><i class="fas fa-book-open"></i> Catalogo</a>
                                 <ul>
-                                    <li><a href="catalogoagre.html"><i class="fas fa-plus"></i> Agregar</a></li>
-                                    <li><a href="catalogomodi.html"><i class="fas fa-edit"></i> Modificar</a></li>
-                                    <li><a href="catalogoeli.html"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
+                                    <li><a href="{% url 'agregarProducto' %}"><i class="fas fa-plus"></i> Agregar</a></li>
+                                    <li><a href="{% url 'modificarProducto' %}"><i class="fas fa-edit"></i> Modificar</a></li>
+                                    <li><a href="{% url 'eliminarProducto' %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
                                     <li><a href="catalogobus.html"><i class="fas fa-search"></i> Buscar</a></li>
                                 </ul>
                             </li>

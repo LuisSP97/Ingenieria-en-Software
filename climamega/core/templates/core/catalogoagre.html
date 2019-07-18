@@ -6,14 +6,18 @@
                 Agregar Productos
             </h1>
         
-            <form class="form1" action="">
+            <form class="form1" action="{% url 'agregarProducto' %}" method="post">
+                {% csrf_token %}
                     <label for="nombre-producto" class="Nombre">Nombre de Producto </label>
-                    <input id="nombre-producto" type="text">
+                    <input name="nombre" type="text">
                 
-                    <label for="numero-producto">Codigo de Producto</label>
-                    <input id="numero-producto" type="number">
+                    <label for="descripcion-producto">Descripcion de Producto</label>
+                    <input name="descripcion" type="text">
+
+                    <label for="precio-producto">Precio de Producto</label>
+                    <input name="precio" type="number" value="0">
         
-                    <button>Guardar</button>
+                    <input type="submit" value="Guardar">
                 </form>
 
 

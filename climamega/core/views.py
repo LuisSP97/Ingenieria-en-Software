@@ -4,8 +4,16 @@ from django.template import loader
 from django.http import Http404
 from django.urls import reverse
 from django.utils import timezone
+from django.http import HttpRequest
+
 
 from functools import reduce
+
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+import time
+
 
 from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Estado
 
@@ -147,9 +155,7 @@ def crearCotizacion(request):
             codigoProducto=Catalogo.objects.get(pk=codProducto),
             cantidad=cantidad)
 
-    return render(request, 'core/index.html')
-
-
+    return buscarCotizacion(HttpRequest())
 
 
 
@@ -183,38 +189,44 @@ def detalleCotizacion(request, codigo):
 
 
 
+def agregarProducto(request):
+  if  request.method == 'POST' and request.POST['nombre'] != "" and request.POST['descripcion'] != "" and request.POST['precio'] != "":
+      Catalogo.objects.create(nombre=request.POST['nombre'],
+                            precio=request.POST['precio'],
+                            descripcion=request.POST['descripcion'])
+      return render(request, 'core/index.html')
 
+  else:
+      return render(request, 'core/catalogoagre.html')
+    
 
-
-
-
-
-
-
-def nuevoProducto(request):
-    return render(request, 'core/nuevoProducto.html')
-
-
-def generarProducto(request):
-    Catalogo.objects.create(nombre=request.POST['nombre'],
-                            precio=request.POST['precio'])
-
+def modificarProducto(request):
     listaProductos = Catalogo.objects.all()
-    return render(request, 'core/catalogo.html', {'listaProductos': listaProductos})
+    return render(request, 'core/catalogomodi.html', {'listaProductos': listaProductos})
 
 
-def catalogo(request):
-    return render(request, 'core/catalogobus.html')
-
-
-def busquedaCatalogo(request):
-    codigo = request.POST['numero-producto']
-    return render(request, 'core/detalleProducto.html', {'producto': codigo})
-
-
-def producto(request, codigo):
-    try:
+def confirmarModificarProducto(request, codigo):
+    if  request.method == 'POST':
+        Catalogo.objects.filter(pk=codigo).update(
+          nombre=request.POST['nombre'],
+          descripcion=request.POST['descripcion'],
+          precio=request.POST['precio']
+        )
+        return render(request, 'core/index.html')
+    else:
         producto = Catalogo.objects.get(pk=codigo)
-    except Catalogo.DoesNotExist:
-        raise Http404("No existe producto")
-    return render(request, 'core/detalleProducto.html', {'producto': producto})
+        return render(request, 'core/confirmarModificarProducto.html', {'producto': producto})
+
+
+def eliminarProducto(request):
+    listaProductos = Catalogo.objects.all()
+    return render(request, 'core/catalogoeli.html', {'listaProductos': listaProductos})
+
+
+def confirmarEliminarProducto(request, codigo):
+    if  request.method == 'POST':
+        Catalogo.objects.filter(pk=codigo).delete()
+        return render(request, 'core/index.html')
+    else:
+        producto = Catalogo.objects.get(pk=codigo)
+        return render(request, 'core/confirmarEliminarProducto.html', {'producto': producto})

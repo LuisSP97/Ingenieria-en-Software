@@ -40,7 +40,13 @@ urlpatterns = [
     path('buscarCotizacion/', views.buscarCotizacion, name='buscarCotizacion'),
     path('crearCotizacion/', views.crearCotizacion, name='crearCotizacion'),
 
+    path('agregarProducto/', views.agregarProducto, name='agregarProducto'),
+
+    path('modificarProducto/', views.modificarProducto, name='modificarProducto'),
+    path('confirmarModificarProducto/<int:codigo>/', views.confirmarModificarProducto, name='confirmarModificarProducto'),
     
+    path('eliminarProducto/', views.eliminarProducto, name='eliminarProducto'),
+    path('confirmarEliminarProducto/<int:codigo>/', views.confirmarEliminarProducto, name='confirmarEliminarProducto'),
 
     path('admin/', admin.site.urls),
 ]

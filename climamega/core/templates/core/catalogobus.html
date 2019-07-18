@@ -1,16 +1,14 @@
 {% include 'core/header.html' %}
 
-
-    <section class="formulario-buscar">
-            <h1>
-                Buscar Producto
-            </h1>
-    
-            <form class="form2" action="">
-                    <label for="numero-producto" class="numero-producto"> <i class="fas fa-search"></i></label>
-                    <input id="numero-producto" type="number" placeholder="Codigo de producto">
-                    <button>Buscar</button>
-             </form>
+    <section class="detalle">
+        <h1>
+            Listado de Productos
+        </h1>
+          <ul>
+            {% for producto in listaProductos %}
+              <li><a href="{% url 'detalleProducto' producto.codigo %}">{{ producto.codigo }} - {{ producto.nombre }}</a></li>
+            {% endfor %}
+          </ul>
         </section>
 
 </body>

@@ -1,6 +1,4 @@
 from core.models import *
-
-from django.utils import timezone
-
-
 Estado.objects.create(descripcion = "Pendiente")
+Estado.objects.create(descripcion = "Aceptado")
+Estado.objects.create(descripcion = "Rechazado")
