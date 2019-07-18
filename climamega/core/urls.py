@@ -52,5 +52,8 @@ urlpatterns = [
     path('eliminarProducto/', views.eliminarProducto, name='eliminarProducto'),
     path('confirmarEliminarProducto/<int:codigo>/', views.confirmarEliminarProducto, name='confirmarEliminarProducto'),
 
+    path('aceptarCotizacion/<int:codigo>/', views.aceptarCotizacion, name='aceptarCotizacion'),
+
+
     path('admin/', admin.site.urls),
 ]

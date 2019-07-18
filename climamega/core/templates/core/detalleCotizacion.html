@@ -19,11 +19,25 @@
         </h1>
           <ul>
             {% for producto in cotizacion.prod_cotizacion_set.all %}
-              <li>Nombre producto: {{ producto.codigoProducto.nombre }}, Cantidad: {{ producto.cantidad }}</li>
+              <li>Nombre producto: {{ producto.codigoProducto.nombre }}, Precio unitario: {{ producto.codigoProducto.precio }}, Cantidad: {{ producto.cantidad }}</li>
             {% endfor %}
           </ul>
         </section>
 
+
+        <section class="formulario">
+          <form class="form1" action="{% url 'aceptarCotizacion' cotizacion.numero_cotizacion %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Aceptar">
+          </form>
+
+          <form class="form1" action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Eliminar">
+          </form>
+
+      </form>
+        </section>
 
 </body>
 </html>

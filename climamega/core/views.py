@@ -15,7 +15,7 @@ from reportlab.pdfgen import canvas
 import time
 
 
-from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Estado
+from .models import Catalogo, Cotizacion, Prod_Cotizacion, Cliente, Estado, Venta
 
 
 def index(request):
@@ -248,3 +248,15 @@ def confirmarEliminarProducto(request, codigo):
     else:
         producto = Catalogo.objects.get(pk=codigo)
         return render(request, 'core/confirmarEliminarProducto.html', {'producto': producto})
+
+
+def aceptarCotizacion(request, codigo):
+    Venta.objects.create( cotizacion = Cotizacion.objects.get(pk=codigo),
+                          fechaEmision = timezone.now())
+
+    return ventas(request)
+
+
+def ventas(request):
+    ventas = Ventas.objects.all()
+    return render(request, 'core/ventas.html', {'ventas': ventas})

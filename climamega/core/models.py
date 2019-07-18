@@ -48,6 +48,7 @@ class Prod_Cotizacion(models.Model):
 class Venta(models.Model):
     numero_venta = models.AutoField(primary_key=True)
     cotizacion = models.ForeignKey(Cotizacion, on_delete=models.CASCADE)
+    fechaEmision = models.DateTimeField('Fecha emision')
     def __str__(self):
         return self.numero_venta
 
