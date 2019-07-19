@@ -8,22 +8,33 @@
         <form class="form2" action="{% url 'buscarCliente' %}" method="post">
             {% csrf_token %}
                 <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
-                <input name="rut" type="number" placeholder="Buscar Rut" >
-                <input class="botonn" type="submit" value="Buscar">
+                <input name="rut" type="number" placeholder="Buscar Rut" id="myInput" onkeyup="myFunction()" title="Type in a name">
+                <input type="submit" value="Buscar">
         </form>
-          
+        <ul id="myUL">
+          {% for cliente in listaClientes %}
+            <li><a class="imprimeclientes" href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+          {% endfor %}
+        </ul>
+        <script>
 
-    </section>
-
-    <section class="detalle">
-    <h1>
-      <i class="fas fa-list-alt"></i> Listado de Clientes
-    </h1>
-      <ul>
-        {% for cliente in listaClientes %}
-          <li> <i class="fas fa-user"></i> <a href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
-        {% endfor %}
-      </ul>
+          function myFunction() {
+              var input, filter, ul, li, a, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              ul = document.getElementById("myUL");
+              li = ul.getElementsByTagName("li");
+              for (i = 0; i < li.length; i++) {
+                  a = li[i].getElementsByTagName("a")[0];
+                  txtValue = a.textContent || a.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                      li[i].style.display = "";
+                  } else {
+                      li[i].style.display = "none";
+                  }
+              }
+          }
+          </script>
     </section>
 </body>
 </html>
