@@ -53,7 +53,11 @@ urlpatterns = [
     path('confirmarEliminarProducto/<int:codigo>/', views.confirmarEliminarProducto, name='confirmarEliminarProducto'),
 
     path('aceptarCotizacion/<int:codigo>/', views.aceptarCotizacion, name='aceptarCotizacion'),
+    path('eliminarCotizacion/<int:codigo>/', views.eliminarCotizacion, name='eliminarCotizacion'),
+    path('ventas/', views.ventas, name='ventas'),
+    path('detalleVenta/<int:codigo>/', views.detalleVenta, name='detalleVenta'),
 
+    path('reporte/<int:codigo>/', views.reporte, name='reporte'),
 
     path('admin/', admin.site.urls),
 ]

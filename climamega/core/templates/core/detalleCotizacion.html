@@ -25,19 +25,22 @@
         </section>
 
 
+    {% if cotizacion.estado_id == 1 %}
         <section class="formulario">
           <form class="form1" action="{% url 'aceptarCotizacion' cotizacion.numero_cotizacion %}" method="post">
               {% csrf_token %}
               <input type="submit" value="Aceptar">
           </form>
 
-          <form class="form1" action="" method="post">
+          <form class="form1" action="{% url 'eliminarCotizacion' cotizacion.numero_cotizacion %}" method="post">
             {% csrf_token %}
             <input type="submit" value="Eliminar">
           </form>
-
-      </form>
         </section>
+    {% else %}
+    {% endif %}
+
+          
 
 </body>
 </html>

@@ -1,0 +1,17 @@
+{% include 'core/header.html' %}
+
+    <section class="formulario">
+            <h1>
+                Descargar PDF
+            </h1>
+        
+            <form class="form1" action="{% url 'reporte' cotizacion %}" method="post">
+              {% csrf_token %}
+                <button>Descargar</button>
+            </form>
+
+
+    </section>
+
+</body>
+</html>

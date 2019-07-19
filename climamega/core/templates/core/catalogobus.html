@@ -1,15 +1,42 @@
+
 {% include 'core/header.html' %}
 
+    <section class="formulario">
+            <h1>
+                Buscar Producto
+            </h1>
+        
+            <form class="form1" action="{% url 'buscarCatalogo' %}" method="post">
+              {% csrf_token %}
+                <label for="nombre" class="nombre">Nombre producto (contiene)</label>
+                <input name="nombre" type="text">
+
+                <label for="descripcion" class="descripcion">Descripcion producto (contiene)</label>
+                <input name="descripcion" type="text">
+
+                <label for="precioI" class="precioI">Precio desde</label>
+                <input name="precioI" type="number">
+
+                <label for="precioF" class="precioF">Precio hasta</label>
+                <input name="precioF" type="number">
+                
+                <button>Buscar</button>
+            </form>
+
+
+    </section>
+
     <section class="detalle">
-        <h1>
-            Listado de Productos
-        </h1>
-          <ul>
-            {% for producto in listaProductos %}
-              <li><a href="{% url 'detalleProducto' producto.codigo %}">{{ producto.codigo }} - {{ producto.nombre }}</a></li>
-            {% endfor %}
-          </ul>
-        </section>
+      <h1>
+          Listado de Productos
+      </h1>
+        <ul>
+          {% for producto in listaProductos %}
+            <li><a href="{% url 'detalleProducto' producto.codigo %}">{{ producto.codigo }} - {{ producto.nombre }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+
 
 </body>
 </html>

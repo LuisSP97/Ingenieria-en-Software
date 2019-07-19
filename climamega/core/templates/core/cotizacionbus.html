@@ -7,13 +7,13 @@
         
             <form class="form1" action="{% url 'buscarCotizacion' %}" method="post">
               {% csrf_token %}
-                <label for="numero-rut" class="numero-rut">Rut cliente</label>
-                <input name="numero-rut" type="number">
+                <label for="rut" class="rut">Rut cliente</label>
+                <input name="rut" type="number">
 
-                
-                <label for="numero-cotizacion" class="numero-cotizacion">Numero de Cotizacion</label>
-                <input name="numero-cotizacion" type="number">
-                 <button>Buscar</button>
+                <label for="cotizacion" class="cotizacion">Numero de Cotizacion</label>
+                <input name="cotizacion" type="number">
+
+                <button>Buscar</button>
             </form>
 
 
