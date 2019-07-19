@@ -9,7 +9,7 @@
             {% csrf_token %}
                 <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
                 <input name="rut" type="number" placeholder="Buscar Rut" >
-                <input type="submit" value="Buscar">
+                <input class="botonn" type="submit" value="Buscar">
         </form>
           
 
@@ -17,11 +17,11 @@
 
     <section class="detalle">
     <h1>
-        Listado de Clientes
+      <i class="fas fa-list-alt"></i> Listado de Clientes
     </h1>
       <ul>
         {% for cliente in listaClientes %}
-          <li><a href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+          <li> <i class="fas fa-user"></i> <a href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
         {% endfor %}
       </ul>
     </section>

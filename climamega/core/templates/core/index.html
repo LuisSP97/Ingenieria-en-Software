@@ -7,25 +7,25 @@
 
             <form class="form1" action="{% url 'generarCliente' %}" method="post">
                 {% csrf_token %}
-                    <label for="nombre" class="Nombre">Nombre</label>
+                    <label for="nombre" class="Nombre"><i class="fas fa-user-circle"></i> Nombre</label>
                     <input name="nombre" type="text">
         
-                    <label for="apellido" class="Apellido">Apellido</label>
+                    <label for="apellido" class="Apellido"><i class="fas fa-user-circle"></i> Apellido</label>
                     <input name="apellido" type="text">
         
-                    <label for="rut">Rut</label>
+                    <label for="rut"><i class="fas fa-id-card"></i> Rut</label>
                     <input name="rut" type="number">
         
-                    <label for="direccion">Direccion</label>
+                    <label for="direccion"><i class="fas fa-sign"></i> Direccion</label>
                     <input name="direccion" type="text">
         
-                    <label for="email">Email</label>
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
                     <input name="email" type="email">
 
-                    <label for="telefono">Telefono</label>
+                    <label for="telefono"><i class="fas fa-mobile-alt"></i> Telefono</label>
                     <input name="telefono" type="number">
         
-                    <input type="submit" value="Guardar">
+                    <input class="botonn" type="submit" value="Guardar">
                 </form>
 
     </section>

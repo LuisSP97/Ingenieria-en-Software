@@ -9,17 +9,17 @@
             <form class="form1" action="{% url 'nuevaCotizacion' %}" method="post">
                 {% csrf_token %}
                 
-                <p>Listado clientes: </p>
+                <p>Listado Clientes: </p>
                 
                 {% for cliente in listaClientes %}
+                    <label class="nombreclie" for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label>
                     <input type="radio" name="cliente" id="cliente{{ cliente.rut }}" value="{{ cliente.rut }}">
-                    <label for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label>
                 {% endfor %}
-                <p>Catalogo: </p>
+                <p class="catalogop">Catalogo: </p>
                 
                 {% for producto in listaProductos %}
+                    <label for="productos{{ producto.codigo }}">Cantida de {{ producto.nombre }}</label>
                     <input type="number" name="productos" id="productos{{ producto.codigo }}" value="0">
-                    <label for="productos{{ producto.codigo }}">{{ producto.nombre }}</label>
                 {% endfor %}
 
                 <label for="expiracion">Fecha de Expiracion</label>
@@ -28,7 +28,7 @@
                 <label for="servicio">Precio servicio</label>
                 <input name="servicio" type="number" value="0">
 
-                <input type="submit" value="Agregar">
+                <input class="botonn" type="submit" value="Agregar">
             </form>
 
 
