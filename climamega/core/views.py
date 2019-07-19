@@ -209,9 +209,9 @@ def buscarCatalogo(request):
     productos = Catalogo.objects.all()
     if  request.method == 'POST':
         if request.POST.get('nombre', False):
-            productos = productos.filter(nombre__contains= request.POST['nombre'])
+            productos = productos.filter(nombre__contains = request.POST['nombre'])
         if request.POST.get('descripcion', False):
-            productos = productos.filter(nombre__contains= request.POST['descripcion'])
+            productos = productos.filter(descripcion__contains = request.POST['descripcion'])
         if request.POST.get('precioI', False):
             productos = productos.filter(fechaEmision__gte = request.POST['precioI'])
         if request.POST.get('precioF', False):
@@ -226,8 +226,19 @@ def detalleProducto(request, codigo):
 
 
 def modificarProducto(request):
-    listaProductos = Catalogo.objects.all()
-    return render(request, 'core/catalogomodi.html', {'listaProductos': listaProductos})
+    productos = Catalogo.objects.all()
+    if  request.method == 'POST':
+        if request.POST.get('nombre', False):
+            productos = productos.filter(nombre__contains = request.POST['nombre'])
+        if request.POST.get('descripcion', False):
+            productos = productos.filter(descripcion__contains = request.POST['descripcion'])
+        if request.POST.get('precioI', False):
+            productos = productos.filter(fechaEmision__gte = request.POST['precioI'])
+        if request.POST.get('precioF', False):
+            productos = productos.filter(fechaEmision__lte = request.POST['precioF'])
+
+    return render(request, 'core/catalogomodi.html', { 'listaProductos': productos.order_by('nombre') })
+
 
 
 def confirmarModificarProducto(request, codigo):
@@ -244,8 +255,18 @@ def confirmarModificarProducto(request, codigo):
 
 
 def eliminarProducto(request):
-    listaProductos = Catalogo.objects.all()
-    return render(request, 'core/catalogoeli.html', {'listaProductos': listaProductos})
+    productos = Catalogo.objects.all()
+    if  request.method == 'POST':
+        if request.POST.get('nombre', False):
+            productos = productos.filter(nombre__contains = request.POST['nombre'])
+        if request.POST.get('descripcion', False):
+            productos = productos.filter(descripcion__contains = request.POST['descripcion'])
+        if request.POST.get('precioI', False):
+            productos = productos.filter(fechaEmision__gte = request.POST['precioI'])
+        if request.POST.get('precioF', False):
+            productos = productos.filter(fechaEmision__lte = request.POST['precioF'])
+
+    return render(request, 'core/catalogoeli.html', { 'listaProductos': productos.order_by('nombre') })
 
 
 def confirmarEliminarProducto(request, codigo):
