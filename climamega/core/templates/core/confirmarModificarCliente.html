@@ -1,39 +1,39 @@
-{% include 'core/header.html' %}
+{% include 'core/header.html' %} {% if cliente %}
 
-{% if cliente %}
-    
-    <section class="formulario">
+<section class="formulario">
 
-        <form class="form1" action="{% url 'confirmarModificarCliente' cliente.rut %}" method="post">
-            {% csrf_token %}
-            <label for="nombre" class="Nombre">Nombre</label>
-            <input name="nombre" type="text" value="{{ cliente.nombre }}">
+    <form class="form1" action="{% url 'confirmarModificarCliente' cliente.rut %}" method="post">
+        {% csrf_token %}
+        <label for="nombre" class="Nombre">Nombre</label>
+        <input name="nombre" type="text" value="{{ cliente.nombre }}">
 
-            <label for="apellido" class="Apellido">Apellido</label>
-            <input name="apellido" type="text" value="{{ cliente.apellido }}">
+        <label for="apellido" class="Apellido">Apellido</label>
+        <input name="apellido" type="text" value="{{ cliente.apellido }}">
 
-            <label for="direccion">Direccion</label>
-            <input name="direccion" type="text" value="{{ cliente.direccion }}">
+        <label for="direccion">Direccion</label>
+        <input name="direccion" type="text" value="{{ cliente.direccion }}">
 
-            <label for="email">Email</label>
-            <input name="email" type="email" value="{{ cliente.correo }}">
+        <label for="email">Email</label>
+        <input name="email" type="email" value="{{ cliente.correo }}">
 
-            <label for="telefono">Telefono</label>
-            <input name="telefono" type="text" value="{{ cliente.telefono }}">
+        <label for="telefono">Telefono</label>
+        <input name="telefono" type="text" value="{{ cliente.telefono }}">
 
-            <input type="submit" value="Modificar">
-        </form>
-          
-    </section>
+        <input type="submit" value="Modificar">
+    </form>
+
+</section>
 
 {% else %}
-    
-    <section class="detalle">
-            <p>No existe cliente.</p>
 
-    </section>
+<section class="detalle">
+    <p>No existe cliente.</p>
+
+</section>
 {% endif %}
 
 
 </body>
-</html> 
+{% include 'core/footer.html' %}
+
+</html>

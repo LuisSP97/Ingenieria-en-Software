@@ -1,46 +1,47 @@
 {% include 'core/header.html' %}
 
-    <section class="detalle">
-            <h1>
-                Detalle de Cotizacion
-            </h1>
-            <p>Cliente: <a href="{% url 'detalleCliente' cotizacion.rut_cliente.rut %}"> {{ cotizacion.rut_cliente.rut }}</a></p> 
-            <p>Fecha emision: {{ cotizacion.emision }}</p> 
-            <p>Fecha expiracion: {{ cotizacion.expiracion }}</p> 
-            <p>Precio servicio: {{ cotizacion.precio_servicio }}</p>
-            <p>Total: {{ cotizacion.total }}</p> 
-            <p>Estado: {{ cotizacion.estado.descripcion }}</p> 
-            <p>Codigo: {{ cotizacion.numero_cotizacion }}</p> 
-    </section>
+<section class="detalle">
+    <h1>
+        Detalle de Cotizacion
+    </h1>
+    <p>Cliente: <a href="{% url 'detalleCliente' cotizacion.rut_cliente.rut %}"> {{ cotizacion.rut_cliente.rut }}</a></p>
+    <p>Fecha emision: {{ cotizacion.emision }}</p>
+    <p>Fecha expiracion: {{ cotizacion.expiracion }}</p>
+    <p>Precio servicio: {{ cotizacion.precio_servicio }}</p>
+    <p>Total: {{ cotizacion.total }}</p>
+    <p>Estado: {{ cotizacion.estado.descripcion }}</p>
+    <p>Codigo: {{ cotizacion.numero_cotizacion }}</p>
+</section>
 
-    <section class="detalle">
-        <h1>
-            Listado de Productos
-        </h1>
-          <ul>
-            {% for producto in cotizacion.prod_cotizacion_set.all %}
-              <li>Nombre producto: {{ producto.codigoProducto.nombre }}, Precio unitario: {{ producto.codigoProducto.precio }}, Cantidad: {{ producto.cantidad }}</li>
-            {% endfor %}
-          </ul>
-        </section>
+<section class="detalle">
+    <h1>
+        Listado de Productos
+    </h1>
+    <ul>
+        {% for producto in cotizacion.prod_cotizacion_set.all %}
+        <li>Nombre producto: {{ producto.codigoProducto.nombre }}, Precio unitario: {{ producto.codigoProducto.precio }}, Cantidad: {{ producto.cantidad }}</li>
+        {% endfor %}
+    </ul>
+</section>
 
 
-    {% if cotizacion.estado_id == 1 %}
-        <section class="formulario">
-          <form class="form1" action="{% url 'aceptarCotizacion' cotizacion.numero_cotizacion %}" method="post">
-              {% csrf_token %}
-              <input type="submit" value="Aceptar">
-          </form>
+{% if cotizacion.estado_id == 1 %}
+<section class="formulario">
+    <form class="form1" action="{% url 'aceptarCotizacion' cotizacion.numero_cotizacion %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Aceptar">
+    </form>
 
-          <form class="form1" action="{% url 'eliminarCotizacion' cotizacion.numero_cotizacion %}" method="post">
-            {% csrf_token %}
-            <input type="submit" value="Eliminar">
-          </form>
-        </section>
-    {% else %}
-    {% endif %}
+    <form class="form1" action="{% url 'eliminarCotizacion' cotizacion.numero_cotizacion %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
+</section>
+{% else %} {% endif %}
 
-          
+
 
 </body>
+{% include 'core/footer.html' %}
+
 </html>

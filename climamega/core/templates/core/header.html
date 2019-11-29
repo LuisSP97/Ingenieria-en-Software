@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,54 +11,67 @@
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <script src="https://kit.fontawesome.com/b2da16663c.js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    {% load bootstrap4 %} {% bootstrap_css %}
 </head>
 
 <body>
 
     <header>
-        <div class="contenedor">
-            <div class="logo">
-            <!-- <img src="img/banner.jpeg" alt="logo"> -->
-                <div style="text-align: left"><img src="{% static 'img/banner.jpeg' %}" width="200" /></div>
+        <!--Contenedor-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!--<div class="logo">
+                <div style="text-align: left"><img src="{% static 'img/banner.jpeg' %}" width="180" /></div>
+            </div>-->
+            <a class="navbar-brand" style="color:white"><i class="fas fa-cloud-sun"></i> MegaClima</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Boton Clientes-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="mr-1 fas fa-user"></i>Clientes
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'index' %}"><i class="mr-1 fas fa-plus"></i>Agregar</a>
+                            <a class="dropdown-item" href="{% url 'modificarCliente' %}"><i class="mr-1 fas fa-edit"></i>Modificar</a>
+                            <a class="dropdown-item" href="{% url 'eliminarCliente' %}"><i class="mr-1 fas fa-trash-alt"></i>Eliminar</a>
+                            <a class="dropdown-item" href="{% url 'buscarCliente' %}"><i class="mr-1 fas fa-search"></i>Buscar</a>
+                        </div>
+                    </div>
+                    <!-- Boton Cotizacion-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" style=" margin-right: 7.5px; " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="mr-1 fas fa-calculator"></i>Cotizacion
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'nuevaCotizacion' %}"><i class="mr-1 fas fa-plus"></i>Agregar</a>
+                            <a class="dropdown-item" href="{% url 'buscarCotizacion' %}"><i class="mr-1 fas fa-search"></i>Buscar</a>
+                        </div>
+                    </div>
+                    <!-- Boton Catalogo-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="mr-1 fas fa-book-open"></i>Catalogo
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'agregarProducto' %}"><i class="mr-1 fas fa-plus"></i>Agregar</a>
+                            <a class="dropdown-item" href="{% url 'modificarProducto' %}"><i class="mr-1 fas fa-edit"></i>Modificar</a>
+                            <a class="dropdown-item" href="{% url 'eliminarProducto' %}"><i class="mr-1 fas fa-trash-alt"></i>Eliminar</a>
+                            <a class="dropdown-item" href="{% url 'buscarCatalogo' %}"><i class="mr-1 fas fa-search"></i>Buscar</a>
+                        </div>
+                    </div>
+                    <!-- Boton Ventas-->
+                    <a href="{% url 'ventas' %}" class="btn btn-primary mr-1" role="button"><i class="mr-1 fas fa-cash-register"></i>Ventas</a>
+                </ul>
             </div>
-        </div><!--Contenedor-->
+        </nav>
+    </header>
+</body>
 
-        <section class="menu">
-            <div class="contenedor">
-                    <nav>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-user"></i> Clientes</a>
-                                <ul>
-                                    <li><a href="{% url 'index' %}"><i class="fas fa-plus"></i> Agregar</a></li>
-                                    <li><a href="{% url 'modificarCliente' %}"><i class="fas fa-edit"></i> Modificar</a></li>
-                                    <li><a href="{% url 'eliminarCliente' %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
-                                    <li><a href="{% url 'buscarCliente' %}"><i class="fas fa-search"></i> Buscar</a></li>
-                                 </ul>
-                            </li>
-
-                            <li><a href="#"><i class="fas fa-calculator"></i> Cotizacion</a>
-                                <ul>
-                                    <li><a href="{% url 'nuevaCotizacion' %}"><i class="fas fa-plus"></i> Agregar</a></li>
-                                    <li><a href="{% url 'buscarCotizacion' %}"><i class="fas fa-search"></i> Buscar</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="#"><i class="fas fa-book-open"></i> Catalogo</a>
-                                <ul>
-                                    <li><a href="{% url 'agregarProducto' %}"><i class="fas fa-plus"></i> Agregar</a></li>
-                                    <li><a href="{% url 'modificarProducto' %}"><i class="fas fa-edit"></i> Modificar</a></li>
-                                    <li><a href="{% url 'eliminarProducto' %}"><i class="fas fa-trash-alt"></i> Eliminar</a></li>
-                                    <li><a href="{% url 'buscarCatalogo' %}"><i class="fas fa-search"></i> Buscar</a></li>
-                                </ul>
-                            </li>
-
-                            <li> <a href="{% url 'ventas' %}"><i class="fas fa-cash-register"></i> Ventas</a>
-    
-                            </li>
-
-                        </ul>
-                    </nav>
-             </div>
-        </section><!-- Menu -->
-    </header> 
+</html>

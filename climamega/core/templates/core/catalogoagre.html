@@ -1,27 +1,29 @@
 {% include 'core/header.html' %}
 
 
-    <section class="formulario">
-            <h1>
-                Agregar Productos
-            </h1>
-        
-            <form class="form1" action="{% url 'agregarProducto' %}" method="post">
-                {% csrf_token %}
-                    <label for="nombre-producto" class="Nombre">Nombre de Producto </label>
-                    <input name="nombre" type="text">
-                
-                    <label for="descripcion-producto">Descripcion de Producto</label>
-                    <input name="descripcion" type="text">
+<section class="formulario">
+    <h1>
+        Agregar Productos
+    </h1>
 
-                    <label for="precio-producto">Precio de Producto</label>
-                    <input name="precio" type="number" value="0">
-        
-                    <input class="botonn" type="submit" value="Guardar">
-                </form>
+    <form class="form1" action="{% url 'agregarProducto' %}" method="post">
+        {% csrf_token %}
+        <label for="nombre-producto" class="Nombre">Nombre de Producto </label>
+        <input name="nombre" type="text">
+
+        <label for="descripcion-producto">Descripcion de Producto</label>
+        <input name="descripcion" type="text">
+
+        <label for="precio-producto">Precio de Producto</label>
+        <input name="precio" type="number" value="0">
+
+        <input class="botonn" type="submit" value="Guardar">
+    </form>
 
 
-    </section>
+</section>
 
 </body>
+{% include 'core/footer.html' %}
+
 </html>

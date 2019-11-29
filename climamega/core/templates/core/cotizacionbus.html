@@ -1,35 +1,37 @@
 {% include 'core/header.html' %}
 
-    <section class="formulario">
-            <h1>
-                Buscar Cotizacion
-            </h1>
-        
-            <form class="form1" action="{% url 'buscarCotizacion' %}" method="post">
-              {% csrf_token %}
-                <label for="rut" class="rut">Rut cliente</label>
-                <input name="rut" type="number">
+<section class="formulario">
+    <h1>
+        Buscar Cotizacion
+    </h1>
 
-                <label for="cotizacion" class="cotizacion">Numero de Cotizacion</label>
-                <input name="cotizacion" type="number">
+    <form class="form1" action="{% url 'buscarCotizacion' %}" method="post">
+        {% csrf_token %}
+        <label for="rut" class="rut">Rut cliente</label>
+        <input name="rut" type="number">
 
-                <button class="botonn">Buscar</button>
-            </form>
+        <label for="cotizacion" class="cotizacion">Numero de Cotizacion</label>
+        <input name="cotizacion" type="number">
+
+        <button class="botonn">Buscar</button>
+    </form>
 
 
-    </section>
+</section>
 
-    <section class="detalle">
-        <h1>
-            Listado de Cotizaciones
-        </h1>
-          <ul>
-            {% for cotizacion in listaCotizaciones %}
-              <li><a href="{% url 'detalleCotizacion' cotizacion.numero_cotizacion %}">{{ cotizacion.numero_cotizacion }} - {{ cotizacion.rut_cliente }} {{ cotizacion.emision }} {{ cotizacion.emision }}</a></li>
-            {% endfor %}
-          </ul>
-        </section>
+<section class="detalle">
+    <h1>
+        Listado de Cotizaciones
+    </h1>
+    <ul>
+        {% for cotizacion in listaCotizaciones %}
+        <li><a href="{% url 'detalleCotizacion' cotizacion.numero_cotizacion %}">{{ cotizacion.numero_cotizacion }} - {{ cotizacion.rut_cliente }} <!-- Fecha y hora de emision:{{ cotizacion.emision }} - Fecha y hora de expiracion:{{ cotizacion.expiracion }}--></a></li>
+        {% endfor %}
+    </ul>
+</section>
 
 
 </body>
+{% include 'core/footer.html' %}
+
 </html>

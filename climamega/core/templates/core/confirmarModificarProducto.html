@@ -1,22 +1,24 @@
 {% include 'core/header.html' %}
 
-    <section class="formulario">
+<section class="formulario">
 
-        <form class="form1" action="{% url 'confirmarModificarProducto' producto.codigo %}" method="post">
-            {% csrf_token %}
-            <label for="nombre" class="Nombre">Nombre</label>
-            <input name="nombre" type="text" value="{{ producto.nombre }}">
+    <form class="form1" action="{% url 'confirmarModificarProducto' producto.codigo %}" method="post">
+        {% csrf_token %}
+        <label for="nombre" class="Nombre">Nombre</label>
+        <input name="nombre" type="text" value="{{ producto.nombre }}">
 
-            <label for="descripcion" class="Descripcion">Apellido</label>
-            <input name="descripcion" type="text" value="{{ producto.descripcion }}">
+        <label for="descripcion" class="Descripcion">Apellido</label>
+        <input name="descripcion" type="text" value="{{ producto.descripcion }}">
 
-            <label for="precio">Precio</label>
-            <input name="precio" type="number" value="{{ producto.precio }}">
+        <label for="precio">Precio</label>
+        <input name="precio" type="number" value="{{ producto.precio }}">
 
-            <input type="submit" value="Modificar">
-        </form>
-          
-    </section>
+        <input type="submit" value="Modificar">
+    </form>
+
+</section>
 
 </body>
-</html> 
+{% include 'core/footer.html' %}
+
+</html>

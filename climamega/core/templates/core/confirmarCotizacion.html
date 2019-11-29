@@ -1,35 +1,37 @@
 {% include 'core/header.html' %}
 
-    <section class="detalle">
-            <h1>
-                Detalle de Cotizacion
-            </h1>
-            <p>Cliente: <a href="{% url 'detalleCliente' rut %}"> {{ rut }}</a></p> 
-            <p>Fecha expiracion: {{ expiracion }}</p> 
-            <p>Precio servicio: {{ servicio }}</p>
+<section class="detalle">
+    <h1>
+        Detalle de Cotizacion
+    </h1>
+    <p>Cliente: <a href="{% url 'detalleCliente' rut %}"> {{ rut }}</a></p>
+    <p>Fecha expiracion: {{ expiracion }}</p>
+    <p>Precio servicio: {{ servicio }}</p>
 
-    </section>
+</section>
 
-      <section class="formulario">
-      <form class="form1" action="{% url 'crearCotizacion' %}" method="post">
-          {% csrf_token %}
-          <label for="total" class="Total">Total</label>
-          <input name="total" type="number" value="{{ total }}">
+<section class="formulario">
+    <form class="form1" action="{% url 'crearCotizacion' %}" method="post">
+        {% csrf_token %}
+        <label for="total" class="Total">Total</label>
+        <input name="total" type="number" value="{{ total }}">
 
-          <input type="submit" value="Aceptar">
-      </form>
-    </section>
+        <input type="submit" value="Aceptar">
+    </form>
+</section>
 
-    <section class="detalle">
-        <h1>
-            Listado de Productos
-        </h1>
-          <ul>
-            {% for producto, cantidad in productosCantidad %}
-            <li>Nombre producto: {{ producto.nombre }}, {{ producto.precio }}, Cantidad: {{ cantidad }}</li>
-            {% endfor %}
-          </ul>
-        </section>
-       
+<section class="detalle">
+    <h1>
+        Listado de Productos
+    </h1>
+    <ul>
+        {% for producto, cantidad in productosCantidad %}
+        <li>Nombre producto: {{ producto.nombre }}, {{ producto.precio }}, Cantidad: {{ cantidad }}</li>
+        {% endfor %}
+    </ul>
+</section>
+
 </body>
+{% include 'core/footer.html' %}
+
 </html>

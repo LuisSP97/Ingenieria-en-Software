@@ -1,37 +1,37 @@
-{% include 'core/header.html' %}
+{% include 'core/header.html' %} {% if cliente %}
 
-{% if cliente %}
+<section class="detalle">
+    <h1>
+        Detalle de cliente
+    </h1>
+    <p>Nombre: {{ cliente.nombre }}</p>
+    <p>Apellido: {{ cliente.apellido }}</p>
+    <p>RUT: {{ cliente.rut }}</p>
+    <p>Correo: {{ cliente.correo }}</p>
+    <p>Telefono: {{ cliente.telefono }}</p>
+    <p>Direccion: {{ cliente.direccion }}</p>
 
-    <section class="detalle">
-            <h1>
-                Detalle de cliente
-            </h1>
-            <p>Nombre: {{ cliente.nombre }}</p> 
-            <p>Apellido: {{ cliente.apellido }}</p> 
-            <p>RUT: {{ cliente.rut }}</p> 
-            <p>Correo: {{ cliente.correo }}</p> 
-            <p>Telefono: {{ cliente.telefono }}</p> 
-            <p>Direccion: {{ cliente.direccion }}</p> 
+</section>
 
-    </section>
-    
-    <section class="formulario-buscar">
+<section class="formulario-buscar">
 
-        <form class="form2" action="{% url 'confirmarEliminarCliente' cliente.rut %}" method="post">
-            {% csrf_token %}
-              <input type="submit" value="Eliminar">
-        </form>
-          
-    </section>
+    <form class="form2" action="{% url 'confirmarEliminarCliente' cliente.rut %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
+
+</section>
 
 {% else %}
-    
-    <section class="detalle">
-            <p>No existe cliente.</p>
 
-    </section>
+<section class="detalle">
+    <p>No existe cliente.</p>
+
+</section>
 {% endif %}
 
 
 </body>
-</html> 
+{% include 'core/footer.html' %}
+
+</html>

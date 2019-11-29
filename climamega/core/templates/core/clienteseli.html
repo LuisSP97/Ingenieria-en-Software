@@ -1,20 +1,22 @@
 {% include 'core/header.html' %}
 
 
-    <section class="formulario-buscar">
-        <h1>
-            Eliminar Cliente
-        </h1>
+<section class="formulario-buscar">
+    <h1>
+        Eliminar Cliente
+    </h1>
 
-        <form class="form2" action="{% url 'eliminarCliente' %}" method="post">
-            {% csrf_token %}
-                <label for="rut" class="Nombre"> <i class="fas fa-search"></i></label>
-                <input name="rut" type="number" placeholder="Buscar Rut" >
-                <input class="botonn" type="submit" value="Buscar">
-         </form>
-    </section>
+    <form class="form2" action="{% url 'eliminarCliente' %}" method="post">
+        {% csrf_token %}
+        <label for="rut" class="Nombre"> <i class="fas fa-search"></i></label>
+        <input name="rut" type="number" placeholder="Buscar Rut">
+        <input class="botonn" type="submit" value="Buscar">
+    </form>
+</section>
 
 
 
 </body>
+{% include 'core/footer.html' %}
+
 </html>

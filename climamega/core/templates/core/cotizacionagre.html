@@ -1,41 +1,37 @@
-{% include 'core/header.html' %}
+{% include 'core/header.html' %} {% if listaClientes and listaProductos%}
 
-{% if listaClientes and listaProductos%}
+<section class="formulario">
+    <h1>
+        Agregar Cotizacion
+    </h1>
+    <form class="form1" action="{% url 'nuevaCotizacion' %}" method="post">
+        {% csrf_token %}
 
-    <section class="formulario">
-            <h1>
-                Agregar Cotizacion
-            </h1>
-            <form class="form1" action="{% url 'nuevaCotizacion' %}" method="post">
-                {% csrf_token %}
-                
-                <p>Listado Clientes: </p>
-                
-                {% for cliente in listaClientes %}
-                    <label class="nombreclie" for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label>
-                    <input type="radio" name="cliente" id="cliente{{ cliente.rut }}" value="{{ cliente.rut }}">
-                {% endfor %}
-                <p class="catalogop">Catalogo: </p>
-                
-                {% for producto in listaProductos %}
-                    <label for="productos{{ producto.codigo }}">Cantida de {{ producto.nombre }}</label>
-                    <input type="number" name="productos" id="productos{{ producto.codigo }}" value="0">
-                {% endfor %}
+        <p>Listado Clientes: </p>
 
-                <label for="expiracion">Fecha de Expiracion</label>
-                <input name="expiracion" type="date">
+        {% for cliente in listaClientes %}
+        <label class="nombreclie" for="cliente{{ cliente.rut }}">{{ cliente.nombre }}</label>
+        <input class="botoncito" type="radio" name="cliente" id="cliente{{ cliente.rut }}" value="{{ cliente.rut }}"> {% endfor %}
+        <p class="catalogop">Catalogo: </p>
 
-                <label for="servicio">Precio servicio</label>
-                <input name="servicio" type="number" value="0">
+        {% for producto in listaProductos %}
+        <label for="productos{{ producto.codigo }}">Cantida de {{ producto.nombre }}</label>
+        <input type="number" name="productos" id="productos{{ producto.codigo }}" value="0"> {% endfor %}
 
-                <input class="botonn" type="submit" value="Agregar">
-            </form>
+        <label for="expiracion">Fecha de Expiracion</label>
+        <input name="expiracion" type="date">
+
+        <label for="servicio">Precio servicio</label>
+        <input name="servicio" type="number" value="0">
+
+        <input class="botonn" type="submit" value="Agregar">
+    </form>
 
 
-    </section>
+</section>
 
 {% else %}
-    <section class="detalle">
+<section class="detalle">
     <p>No existen clientes o productos.</p>
 
 </section>
@@ -44,4 +40,6 @@
 
 
 </body>
+{% include 'core/footer.html' %}
+
 </html>

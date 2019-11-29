@@ -3,18 +3,19 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
 * {
     margin: 0;
     padding: 0;
-  }
+}
 
-body{
-    background:  white;
+body {
+    background: white;
     font-family: "Open Sans", sans-serif;
     font-size: 16px;
 }
 
-.contenedor{
+.contenedor {
     width: 90%;
     max-width: 1000px;
     margin: auto;
@@ -23,61 +24,75 @@ body{
 header .menu {
     background-color: hsl(199, 85%, 53%)
 }
-header .menu nav{
+
+header .menu nav {
     width: 1200px;
     margin: 0 auto;
     position: relative;
 }
 
-header .menu nav ul{
+header .menu nav ul {
     list-style: none;
 }
 
-header .menu  nav >ul >li{
-      float: left;
+header .menu nav>ul>li {
+    float: left;
 }
 
-    /* ORDENE LOS UL */
-header .menu nav ul::after{
-      content:' ';
-      display: block;
-      clear: both;
+
+/* ORDENE LOS UL */
+
+header .menu nav ul::after {
+    content: ' ';
+    display: block;
+    clear: both;
 }
 
-    /* ordene los a COLOR */
-header .menu nav ul li a{
-      display: inline-block;
-      width: 200px;
-      color: #ffffff;
-      text-decoration: none;
-      text-align: center;
-      padding: 20px;
+
+/* ordene los a COLOR */
+
+header .menu nav ul li a {
+    display: inline-block;
+    width: 200px;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    padding: 20px;
 }
-    
+
+
 /* hover COLOR CUANDO PASO POR ARRRIBA DE LOS A */
-header .menu nav ul li a:hover{
-      background-color: black;
- }
-    
-    /* SEGUNDO LVL */
-    /* COLOR A LOS ENLACES */
+
+header .menu nav ul li a:hover {
+    background-color: black;
+}
+
+
+/* SEGUNDO LVL */
+
+
+/* COLOR A LOS ENLACES */
+
 header .menu nav ul ul {
-      position: absolute;
-      top: 100%;
-      background-color:#003666;
-      display:none;
-      text-align: left
+    position: absolute;
+    top: 100%;
+    background-color: #003666;
+    display: none;
+    text-align: left
 }
 
-    /* para que se guarden los enlaces */
-header .menu nav ul li:hover> ul{
-      display: block;
-    
+
+/* para que se guarden los enlaces */
+
+header .menu nav ul li:hover>ul {
+    display: block;
 }
 
-    /* color para cuando despliegen los enlaces */
-header .menu nav ul li:hover{
-      background-color: #037ef3; 
+
+/* color para cuando despliegen los enlaces */
+
+header .menu nav ul li:hover {
+    background-color: #037ef3;
 }
 
 .formulario .form1 {
@@ -96,17 +111,15 @@ header .menu nav ul li:hover{
 }
 
 .formulario .form1 button {
-    background: lightgrey;
     padding: 0.7em;
     width: 100%;
     border: 0;
 }
 
-  
 .formulario .form1 label {
     padding: 0.5em 0.5em 0.5em 0;
 }
-  
+
 .formulario .form1 input {
     padding: 0.7em;
     margin-bottom: 0.5rem;
@@ -116,27 +129,27 @@ header .menu nav ul li:hover{
     outline: 3px solid blue
 }
 
-.formulario h1{
+.formulario h1 {
     text-align: center;
     border: 2px solid black;
     padding: 20px 60px;
 }
 
-.formulario-buscar h1{
+.formulario-buscar h1 {
     text-align: center;
     border: 2px solid black;
     padding: 20px 60px;
 }
 
-
-.formulario-buscar .form2{
+.formulario-buscar .form2 {
     padding: 1em;
     background: #f9f9f9;
     margin: 2rem auto 0 auto;
     max-width: 600px;
     padding: 1em;
-   text-align: center;
+    text-align: center;
 }
+
 .formulario-buscar .form2 label {
     padding: 0.5em 0.5em 0.5em 0;
 }
@@ -149,20 +162,19 @@ header .menu nav ul li:hover{
 .form2 button {
     padding: 11px 11px;
     border-radius: 10px;
-
 }
 
-.detalle h1{
+.detalle h1 {
     text-align: center;
     padding: 20px 20px;
     color: #037ef3;
 }
 
-.detalle ul{
+.detalle ul {
     text-align: center;
 }
 
-.detalle p{
+.detalle p {
     text-align: center;
     padding: 15px;
     font-size: 20px;
@@ -170,39 +182,47 @@ header .menu nav ul li:hover{
     border: solid 1px black;
 }
 
-.detalle ul li a{
-   font-size: 25px;
-   color: black;
-   text-decoration: none;
-   text-transform: uppercase;
+.detalle ul li a {
+    font-size: 25px;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
 }
+
 .detalle ul li {
     padding: 10px;
 }
+
 .detalle ul li {
     border: solid 1px black;
 }
+
 .detalle ul li i {
     font-size: 23px;
 }
-.formulario .form1 p{
+
+.formulario .form1 p {
     font-size: 20px;
     text-transform: uppercase;
     text-decoration-line: underline;
     margin-bottom: 7px;
 }
-.formulario .form1 .nombreclie{
+
+.formulario .form1 .nombreclie {
     text-transform: uppercase;
 }
-.formulario .form1 .catalogop{
+
+.formulario .form1 .catalogop {
     margin: 10px 0;
 }
-.formulario .form1 .botonn{
+
+.formulario .form1 .botonn {
     background-color: #037ef3;
     color: white;
     cursor: pointer;
 }
-.formulario-buscar .form2 .botonn{
+
+.formulario-buscar .form2 .botonn {
     background-color: #037ef3;
     color: white;
     cursor: pointer;
@@ -216,9 +236,15 @@ header .menu nav ul li:hover{
     text-transform: uppercase;
     font-size: 20px;
 }
-.formulario-buscar ul li{
+
+.formulario-buscar ul li {
     padding: 10px;
 }
+
 .formulario-buscar ul {
     text-align: center;
+}
+
+.formulario .form1 .botoncito {
+    justify-self: baseline;
 }

@@ -1,40 +1,41 @@
 {% include 'core/header.html' %}
 
-    <section class="formulario-buscar">
-        <h1>
-            Buscar Cliente
-        </h1>
+<section class="formulario-buscar">
+    <h1>
+        Buscar Cliente
+    </h1>
 
-        <form class="form2" action="{% url 'buscarCliente' %}" method="post">
-            {% csrf_token %}
-                <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
-                <input name="rut" type="number" placeholder="Buscar Rut" id="myInput" onkeyup="myFunction()" title="Type in a name">
-                <input type="submit" value="Buscar">
-        </form>
-        <ul id="myUL">
-          {% for cliente in listaClientes %}
-            <li><a class="imprimeclientes" href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
-          {% endfor %}
-        </ul>
-        <script>
-
-          function myFunction() {
-              var input, filter, ul, li, a, i, txtValue;
-              input = document.getElementById("myInput");
-              filter = input.value.toUpperCase();
-              ul = document.getElementById("myUL");
-              li = ul.getElementsByTagName("li");
-              for (i = 0; i < li.length; i++) {
-                  a = li[i].getElementsByTagName("a")[0];
-                  txtValue = a.textContent || a.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                      li[i].style.display = "";
-                  } else {
-                      li[i].style.display = "none";
-                  }
-              }
-          }
-          </script>
-    </section>
+    <form class="form2" action="{% url 'buscarCliente' %}" method="post">
+        {% csrf_token %}
+        <label for="rut" class="rut"> <i class="fas fa-search"></i></label>
+        <input name="rut" type="number" placeholder="Buscar Rut" id="myInput" onkeyup="myFunction()" title="Type in a name">
+        <input type="submit" value="Buscar">
+    </form>
+    <ul id="myUL">
+        {% for cliente in listaClientes %}
+        <li><a class="imprimeclientes" href="{% url 'detalleCliente' cliente.rut %}">{{ cliente.rut }} - {{ cliente.nombre }} {{ cliente.apellido }}</a></li>
+        {% endfor %}
+    </ul>
+    <script>
+        function myFunction() {
+            var input, filter, ul, li, a, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</section>
 </body>
+{% include 'core/footer.html' %}
+
 </html>

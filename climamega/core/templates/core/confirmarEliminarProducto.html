@@ -1,23 +1,25 @@
 {% include 'core/header.html' %}
 
-    <section class="detalle">
-            <h1>
-                Detalle de producto
-            </h1>
-            <p>Nombre: {{ producto.nombre }}</p> 
-            <p>Descripcion: {{ producto.descripcion }}</p> 
-            <p>Precio: {{ producto.precio }}</p> 
-    </section>
-    
-    <section class="formulario-buscar">
+<section class="detalle">
+    <h1>
+        Detalle de producto
+    </h1>
+    <p>Nombre: {{ producto.nombre }}</p>
+    <p>Descripcion: {{ producto.descripcion }}</p>
+    <p>Precio: {{ producto.precio }}</p>
+</section>
 
-        <form class="form2" action="{% url 'confirmarEliminarProducto' producto.codigo %}" method="post">
-            {% csrf_token %}
-              <input type="submit" value="Eliminar">
-        </form>
-          
-    </section>
+<section class="formulario-buscar">
+
+    <form class="form2" action="{% url 'confirmarEliminarProducto' producto.codigo %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Eliminar">
+    </form>
+
+</section>
 
 
 </body>
-</html> 
+{% include 'core/footer.html' %}
+
+</html>

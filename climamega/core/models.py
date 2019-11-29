@@ -10,7 +10,7 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=16) # soporte para '+' (+569...)
     direccion = models.CharField(max_length=64)
     def __str__(self):
-        return (str(self.rut) + ", " + self.nombre + ", " + self.apellido)
+        return (str(self.rut) + " - " + self.nombre + " " + self.apellido)
 
 
 class Estado(models.Model):
