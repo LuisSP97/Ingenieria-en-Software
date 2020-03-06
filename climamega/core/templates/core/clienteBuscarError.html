@@ -1,0 +1,59 @@
+{% include 'core/header.html' %}
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4"><i class="fas fa-search"></i> Buscar cliente</h1>
+        </div>
+    </div>
+
+    <form class="container" action="{% url 'buscarCliente' %}" method="post">
+        {% csrf_token %}
+        <!--<label for="rut" class="rut"> <i class="fas fa-search"></i></label>
+        <input name="rut" type="number" placeholder="Buscar Rut" id="myInput" onkeyup="myFunction()" title="Type in a name"> -->
+        <div class="form-group">
+            <label for="rut"><i class="fas fa-id-card"></i> Rut</label>
+            <input type="number" class="form-control" name="rut">
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+
+    </form>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Algo ha fallado!</strong> El cliente no existe.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="container">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">RUT</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Direccion</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in listaClientes %}
+                <tr>
+                    <td>{{ cliente.rut }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.telefono }}</td>
+                    <td>{{ cliente.correo }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                    <td><a class="btn btn-primary" href="{% url 'detalleCliente' cliente.rut %}" role="button"><i class="fas fa-search"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+{% include 'core/footer.html' %}
+
+</html>

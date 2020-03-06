@@ -1,36 +1,37 @@
 {% include 'core/header.html' %} {% if cliente %}
-
-<section class="formulario">
-
-    <form class="form1" action="{% url 'confirmarModificarCliente' cliente.rut %}" method="post">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"><i class="fas fa-user-circle"></i> Modificar Cliente</h1>
+    </div>
+</div>
+<div class='container mt-3'>
+    <form action="{% url 'confirmarModificarCliente' cliente.rut %}" method="post">
         {% csrf_token %}
-        <label for="nombre" class="Nombre">Nombre</label>
-        <input name="nombre" type="text" value="{{ cliente.nombre }}">
-
-        <label for="apellido" class="Apellido">Apellido</label>
-        <input name="apellido" type="text" value="{{ cliente.apellido }}">
-
-        <label for="direccion">Direccion</label>
-        <input name="direccion" type="text" value="{{ cliente.direccion }}">
-
-        <label for="email">Email</label>
-        <input name="email" type="email" value="{{ cliente.correo }}">
-
-        <label for="telefono">Telefono</label>
-        <input name="telefono" type="text" value="{{ cliente.telefono }}">
-
-        <input type="submit" value="Modificar">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" value="{{ cliente.nombre }}">
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" name="apellido" value="{{ cliente.apellido }}">
+        </div>
+        <div class="form-group">
+            <label for="direccion">Direccion</label>
+            <input type="text" class="form-control" name="direccion" value="{{ cliente.direccion }}">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" name="email" value="{{ cliente.correo }}">
+        </div>
+        <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input type="text" class="form-control" name="telefono" value="{{ cliente.telefono }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Modificar</button>
     </form>
+</div>
 
-</section>
-
-{% else %}
-
-<section class="detalle">
-    <p>No existe cliente.</p>
-
-</section>
-{% endif %}
+{% else %} {% endif %}
 
 
 </body>

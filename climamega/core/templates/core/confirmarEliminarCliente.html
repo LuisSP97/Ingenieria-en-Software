@@ -1,34 +1,42 @@
 {% include 'core/header.html' %} {% if cliente %}
 
-<section class="detalle">
-    <h1>
-        Detalle de cliente
-    </h1>
-    <p>Nombre: {{ cliente.nombre }}</p>
-    <p>Apellido: {{ cliente.apellido }}</p>
-    <p>RUT: {{ cliente.rut }}</p>
-    <p>Correo: {{ cliente.correo }}</p>
-    <p>Telefono: {{ cliente.telefono }}</p>
-    <p>Direccion: {{ cliente.direccion }}</p>
 
-</section>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"><i class="fas fa-user-circle"></i> Detalle de cliente</h1>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <th>Cliente:</th>
+            <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
+        </tr>
+        <tr>
+            <th>RUT:</th>
+            <td>{{ cliente.rut }}</td>
+        </tr>
+        <tr>
+            <th>Correo:</th>
+            <td>{{ cliente.correo }}</td>
+        </tr>
+        <tr>
+            <th>Telefono:</th>
+            <td>{{ cliente.telefono }}</td>
+        </tr>
+        <tr>
+            <th>Direccion:</th>
+            <td>{{ cliente.direccion }}</td>
+        </tr>
+    </table>
+</div>
 
-<section class="formulario-buscar">
+<form class="container" action="{% url 'confirmarEliminarCliente' cliente.rut %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary mt-2" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+</form>
 
-    <form class="form2" action="{% url 'confirmarEliminarCliente' cliente.rut %}" method="post">
-        {% csrf_token %}
-        <input type="submit" value="Eliminar">
-    </form>
-
-</section>
-
-{% else %}
-
-<section class="detalle">
-    <p>No existe cliente.</p>
-
-</section>
-{% endif %}
+{% else %} {% endif %}
 
 
 </body>

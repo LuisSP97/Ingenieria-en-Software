@@ -29,8 +29,9 @@ def detalleCliente(request, rut):
     try:
         cliente = Cliente.objects.get(pk=rut)
     except Cliente.DoesNotExist:
-        return render(request, 'core/detalleCliente.html', {'cliente': False})
+        return render(request, 'core/clienteBuscarError.html', {'cliente': False})
     return render(request, 'core/detalleCliente.html', {'cliente': cliente})
+  
 
 
 def buscarCliente(request):
@@ -61,7 +62,7 @@ def eliminarCliente(request):
         try:
             cliente = Cliente.objects.get(pk=request.POST['rut'])
         except Cliente.DoesNotExist:
-            return render(request, 'core/confirmarEliminarCliente.html', {'cliente': False})
+            return render(request, 'core/clientesEliminarError.html', {'cliente': False})
         return render(request, 'core/confirmarEliminarCliente.html', {'cliente': cliente})
     else:
         return render(request, 'core/clienteseli.html')
@@ -77,7 +78,7 @@ def modificarCliente(request):
         try:
             cliente = Cliente.objects.get(pk=request.POST['rut'])
         except Cliente.DoesNotExist:
-            return render(request, 'core/confirmarModificarCliente.html', {'cliente': False})
+            return render(request, 'core/clientesModiError.html', {'cliente': False})
         return render(request, 'core/confirmarModificarCliente.html', {'cliente': cliente})
     else:
         return render(request, 'core/clientesmodi.html')

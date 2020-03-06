@@ -11,11 +11,10 @@
     <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
     <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
     <script src="https://kit.fontawesome.com/b2da16663c.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    {% load bootstrap4 %} {% bootstrap_css %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,7 +33,7 @@
                 <ul class="navbar-nav mr-auto">
                     <!-- Boton Clientes-->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1 mt-1 mb-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="mr-1 fas fa-user"></i>Clientes
                         </button>
                         <div class="dropdown-menu">
@@ -46,7 +45,7 @@
                     </div>
                     <!-- Boton Cotizacion-->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" style=" margin-right: 7.5px; " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1 mt-1 mb-1" style=" margin-right: 7.5px; " data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="mr-1 fas fa-calculator"></i>Cotizacion
                         </button>
                         <div class="dropdown-menu">
@@ -56,7 +55,7 @@
                     </div>
                     <!-- Boton Catalogo-->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle mr-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button type="button" class="btn btn-primary dropdown-toggle mr-1 mt-1 mb-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <i class="mr-1 fas fa-book-open"></i>Catalogo
                         </button>
                         <div class="dropdown-menu">
@@ -67,7 +66,7 @@
                         </div>
                     </div>
                     <!-- Boton Ventas-->
-                    <a href="{% url 'ventas' %}" class="btn btn-primary mr-1" role="button"><i class="mr-1 fas fa-cash-register"></i>Ventas</a>
+                    <a href="{% url 'ventas' %}" class="btn btn-primary mr-1 mt-1 mb-1" role="button"><i class="mr-1 fas fa-cash-register"></i>Ventas</a>
                 </ul>
             </div>
         </nav>

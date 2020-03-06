@@ -1,22 +1,18 @@
 {% include 'core/header.html' %}
 
-
-<section class="formulario-buscar">
-    <h1>
-        Modificar Cliente
-    </h1>
-
-    <form class="form2" action="{% url 'modificarCliente' %}" method="post">
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"><i class="fas fa-user-circle"></i> Modificar Cliente</h1>
+    </div>
+</div>
+<div class="container">
+    <form action="{% url 'modificarCliente' %}" method="post">
         {% csrf_token %}
-        <label for="rut" class="Nombre"> <i class="fas fa-search"></i></label>
-        <input name="rut" type="number" placeholder="Buscar Rut">
-        <input class="botonn" type="submit" value="Buscar">
+        <div class="form-group">
+            <label for="rut"><i class="fas fa-id-card"></i> Rut</label>
+            <input type="number" class="form-control" name="rut">
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Buscar</button>
     </form>
-</section>
-
-
-
-</body>
+</div>
 {% include 'core/footer.html' %}
-
-</html>

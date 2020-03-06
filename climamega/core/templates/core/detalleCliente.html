@@ -1,28 +1,47 @@
-{% include 'core/header.html' %} {% if cliente %}
+{% include 'core/header.html' %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"><i class="fas fa-user-circle"></i> Detalle cliente</h1>
+    </div>
+</div>
 
-<section class="detalle">
-    <h1>
-        <i class="fas fa-address-card"></i> Detalle de Cliente
-    </h1>
-    <p><i class="fas fa-user-circle"></i> Nombre: {{ cliente.nombre }}</p>
-    <p><i class="fas fa-user-circle"></i> Apellido: {{ cliente.apellido }}</p>
-    <p><i class="fas fa-id-card"></i> RUT: {{ cliente.rut }}</p>
-    <p><i class="fas fa-envelope"></i> Correo: {{ cliente.correo }}</p>
-    <p><i class="fas fa-mobile-alt"></i> Telefono: {{ cliente.telefono }}</p>
-    <p> <i class="fas fa-sign"></i> Direccion: {{ cliente.direccion }}</p>
+{% if cliente %}
 
-</section>
+<body>
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+                <th>Cliente:</th>
+                <td>{{ cliente.nombre }} {{ cliente.apellido }}</td>
+            </tr>
+            <tr>
+                <th>RUT:</th>
+                <td>{{ cliente.rut }}</td>
+            </tr>
+            <tr>
+                <th>Correo:</th>
+                <td>{{ cliente.correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono:</th>
+                <td>{{ cliente.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Direccion:</th>
+                <td>{{ cliente.direccion }}</td>
+            </tr>
+        </table>
+        <a class="btn btn-primary" href="{% url 'buscarCliente' %}" role="button"> Volver</a>
+    </div>
+</body>
 
 {% else %}
-
-<section class="detalle">
-    <p>No existe cliente.</p>
-
-</section>
-{% endif %}
-
-
-</body>
-{% include 'core/footer.html' %}
+<div class="container">
+    <div class="alert alert-warning fade show" role="alert">
+        <strong>Algo ha fallado!</strong> El cliente no existe.
+    </div>
+    <a class="btn btn-primary" href="{% url 'buscarCliente' %}" role="button"> Volver</a>
+</div>
+{% endif %} {% include 'core/footer.html' %}
 
 </html>
